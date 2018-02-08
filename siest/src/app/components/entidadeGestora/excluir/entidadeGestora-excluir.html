@@ -1,0 +1,11 @@
+<div *ngIf="entidadeGestora" class="overlay modal-exclusao">
+    <div class="modal">
+        <div class="botao-fechar-modal" (click)="fecharModal()"></div>
+        <p class="font1 modal-title center fw700">Deseja confirmar exclusão?</p>
+        <p class="font1 modal-subtitle center fw500 valor-exclusao">A entidade gestora {{entidadeGestora.tipoGestao.nmeTipoGestao}} será desativada, e seus dados poderão ser consultados
+            em modo de histórico</p>
+        <p></p>
+        <input type="button" (click)="excluirEntidadeGestora()" class="mt20 btn-confirmar modal-button botao-verde2 center btn-confirmar-exclusao fw700 font1"
+            name="" value="Confirmar">
+    </div>
+</div>

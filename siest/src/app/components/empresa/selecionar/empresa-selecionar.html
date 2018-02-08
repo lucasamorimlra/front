@@ -1,0 +1,29 @@
+<div *ngIf="empresa" class="empresa-painel painel bxz">
+    <nav class="empresa-nav">
+        <div class="empresa">
+            <div routerLink="./editar" class="edit  editar-empresa">
+            </div>
+            <div class="empresa-avatar" [ngStyle]="getBackgroundImage()"></div>
+            <p class="empresa-nome font1 fw500">{{empresa.nmeEmpresa}}</p>
+            <p class="empresa-site font1 fw500">{{empresa.urlDominio}}</p>
+            <p class="empresa-cnpj font1 fw500">{{empresa.numCnpj}}</p>
+        </div>
+        <ul class="menu-empresa">
+            <li routerLink="./gestao" [ngClass]="{'active': testarUrlValida()}" class="bxz" id="gst-empresa">
+                <p class="font1 fw700">Gestão</p>
+            </li>
+            <li routerLink="./responsaveis" routerLinkActive="active" class="bxz" id="resp-empresa">
+                <p class="font1 fw700">Responsáveis</p>
+            </li>
+            <li routerLink="./documentos" routerLinkActive="active" class="bxz">
+                <p class="font1 fw700">Documentos</p>
+            </li>
+        </ul>
+    </nav>
+    <div class="empresa-painel-interna">
+
+        <router-outlet>
+        </router-outlet>
+
+    </div>
+</div>

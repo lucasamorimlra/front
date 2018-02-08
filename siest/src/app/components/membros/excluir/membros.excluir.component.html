@@ -1,0 +1,9 @@
+<div class="overlay dar-baixa">
+        <div class="modal">
+            <div class="botao-fechar-modal" (click)="fecharModal()"></div>
+            <p class="font1 modal-title center fw700">Deseja mesmo dar baixa?</p>
+            <p class="font1 modal-subtitle center fw500">Confirma a baixa do membro {{nomeMembro}}({{cargoMembro}}) </p>
+            <input type="date" class="data-dar-baixa hasDatepicker" name="darBaixaData" value="" placeholder="Ex: 07/12/2018" id="dp1506223453946">
+            <input type="submit" name="darBaixa" id="dar-baixa" class="font1 fw700 botao-verde2 center" value="Dar Baixa" (click)="darBaixaMembro()">
+        </div>
+    </div>

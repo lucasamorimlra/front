@@ -1,0 +1,55 @@
+<div *ngIf="empresa">
+    <nav class="abas abas-empresa">
+        <div class="aba abactive2">
+            <p class="fw700 font1"> Gestão - {{empresa.nmeEmpresa}}({{empresa.sglEmpresa}}) </p>
+        </div>
+    </nav>
+    <div class="voltar" (click)="voltar()"></div>
+    <p class="titulo-painel pl font1 fw700">Entidades Gestoras</p>
+    <div class="conteudopainel lista-grupos painel-active">
+        <div class="gestaoinfo pl">
+            <ul>
+                <li>
+                    <p class="no-comites font1 fw700">Nº de Comitês</p>
+                    <span id="no-comites" class="font1 fw500">{{numeroDeComites}}</span>
+                </li>
+                <li>
+                    <p class="no-conselhos font1 fw700">Nº de Conselhos</p>
+                    <span id="no-conselhos" class="font1 fw500">{{numeroDeConselhos}}</span>
+                </li>
+                <li>
+                    <p class="no-diretorias font1 fw700">Nº de Diretorias</p>
+                    <span id="no-diretorias" class="font1 fw500">{{numeroDeDiretorias}}</span>
+                </li>
+            </ul>
+        </div>
+        <div class="gestao-empresa pl">
+            <div *ngFor="let entidadeGestora of entidadesGestoras">
+                <div class="grupo-gestao">
+                    <div routerLink="../entidadeGestora/{{entidadeGestora.id}}">
+                        <p class="nome-gestao nome-tamanho font1 fw700">{{entidadeGestora.tipoGestao.nmeTipoGestao}}</p>
+                        <div class="icone-gestao"></div>
+                        <p class="tipo-gestao fw500 font1">Titulares:{{entidadeGestora.numVagasTitular}}</p>
+                        <p class="no-membros fw500 font1">Suplentes:{{entidadeGestora.numSuplentes}}</p>
+                    </div>
+                    <footer class="footer-grupo">
+                        <div class="icone-holder">
+                            <div routerLink="../editarEntidadeGestora/{{entidadeGestora.id}}" class="grupo-btn editar-grupo" title="Editar Entidade Gestora"></div>
+                            <div routerLink="./excluirEntidadeGestora/{{entidadeGestora.id}}" class="grupo-btn excluir-grupo" router title="Desativar Entidade Gestora"></div>
+                            <div class="grupo-btn informacoes-grupo" title="Remuneração Entidade Gestora" (click)="abreRemuneracao(entidadeGestora.id)"></div>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+            <div routerLink="../cadastrarEntidadeGestora" class="grupo-gestao adicionar">
+                <p class="nome-gestao font1 fw700">Cadastrar Entidade Gestora</p>
+                <div class="icone-gestao-adicionar"></div>
+                <p class="tipo-gestao fw500 font1">Adicionar</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<router-outlet>
+</router-outlet>

@@ -1,0 +1,14 @@
+<div *ngIf="empresa" class="overlay">
+    <div class="modalupload">
+        <div class="close-modal fw500 font2" (click)="voltar()">+</div>
+        <div class="tipo">
+            <label class="nme-empresa fw700 font1 tac">{{empresa.nmeEmpresa}} - {{tipoDocumento.nmeTipoDocumento}}</label>
+        </div>
+
+        <div class="dropzonejs">
+            <dropzone class="dropzonejs" [config]="config" [message]="'Click or drag images here to upload'" (sending)="addOptions($event)"
+                (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></dropzone>
+        </div>
+        <button class="enviararquivos font2 fw700 tt">Enviar Arquivos</button>
+    </div>
+</div>

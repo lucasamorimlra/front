@@ -1,0 +1,59 @@
+<div class="overlay remuneracao-vaga">
+    <div class="modal">
+        <div class="botao-fechar-modal" (click)="voltar()"></div>
+        <table style="width:100%">
+            <tr class="cabecalho-modal">
+                <th class="fw900 font1">Nº da Vaga</th>
+                <th class="fw900 font1">Tipo Vaga</th>
+                <th class="fw900 font1">Membro</th>
+                <th class="fw900 font1">Cargo</th>
+                <th class="fw900 font1">Última Remuneração</th>
+                <th class="fw900 font1">Remuneração</th>
+                <th class="fw900 font1"> Repetir última remuneração
+                    <input type="checkbox" name="" id="repetir-remuneração" (click)="repeteTodasRemuneracoes(false)" value="">
+                </th>
+                <th class="fw900 font1" *ngIf="entidade.vlrRemuneracaoBase !== 0"> Repetir remuneração padrão <input (click)="repeteTodasRemuneracoes(entidade.vlrRemuneracaoBase)"
+                        type="checkbox" name="" id="repetir-remuneracao-padrao" value=""></th>
+            </tr>
+            <tr>
+                <td colspan="3" *ngIf="entidade.vlrRemuneracaoBase !== 0" class=" tal font1 fw700">Remuneração Padrão: <span class="remuneracao-padrao font1 fw700">R$ {{entidade.vlrRemuneracaoBase}}</span>                    </td>
+                <td></td>
+                <td></td>
+                <td class="font1 fw700 tal">Data de Remuneração
+                    <input type="date" [value]="dataRemuneracao" (input)="updateData($event.target.value)" requerido="true" class="inputtb2 data-remuneracao fw500 font1">
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="table-conteudo" *ngFor="let vaga of vagas; let i = index">
+                <td class="fw900 font1">{{vaga.tbVaga.nroVaga}}</td>
+                <td class="fw900 font1" *ngIf="vaga.tbVaga.tipoVaga">Titular</td>
+                <td class="fw900 font1" *ngIf="vaga.tbVaga.tipoVaga !== true">Suplente</td>
+                <td class="fw900 font1">{{vaga.tbPessoa.nmePessoa}}</td>
+                <td class="fw900 font1">{{vaga.tbVaga.tdCargo.nmeCargo}}</td>
+                <td class="fw900 font1" [innerHTML]="remuneracoes['membro'+vaga.id]['str']"></td>
+                <td class="fw900 font1">
+                    <input maskCurrency [value]="remuneracao[i].valor" (input)="update(i,$event.target.value,remuneracoes['membro'+vaga.id]['id'])"
+                        type="text" id="inputRemu" class="fw500 font1 inputtb vlr-remuneracao" value="">
+                </td>
+                <td class="fw900 font1">
+
+                    <input type="checkbox" [checked]="checkboxRemuneracao[i]" class="rep-remuneracao" (click)="repetirRemuneracao(i,vaga.id,false,remuneracoes['membro'+vaga.id]['id'])"
+                        name="" id="repetir-remuneração-" value="">
+                </td>
+                <td class="fw900 font1">
+                    <input [checked]="checkboxPadrao[i]" *ngIf="entidade.vlrRemuneracaoBase !== 0" (click)="repetirRemuneracaoPadrao(i,vaga.id,false,remuneracoes['membro'+vaga.id]['id'])"
+                        type="checkbox" class="rep-remuneracao-padrao" name="" id="repetir-padrao-" value="">
+                </td>
+
+                <td class="fw900 font1">
+                </td>
+                <td class="fw900 font1 hidden"></td>
+            </tr>
+        </table>
+        <p class="titulo-campo font1 fw700 center"></p>
+        <input type="submit" (click)="cadastraRemuneracoes()" name="salvar" class="font1 fw700 botao-verde2 center" value="Atribuir Remuneração">
+    </div>
+</div>

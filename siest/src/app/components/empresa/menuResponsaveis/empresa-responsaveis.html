@@ -1,0 +1,41 @@
+<div *ngIf="empresa">
+    <nav class="abas abas-empresa">
+        <div class="aba abactive2">
+            <p class="fw700 font1"> Responsáveis - {{empresa.nmeEmpresa}}({{empresa.sglEmpresa}}) </p>
+        </div>
+    </nav>
+    <div class="voltar" (click)="voltar()"></div>
+    <p class="titulo-painel pl font1 fw700">Responsáveis por segmento de informação</p>
+    <div class="conteudopainel painel-active">
+        <div class="campo bxz pl segmento-informacao-sel ">
+            <p class=" titulo-campo font1 fw700">Selecione um segmento de informação:</p>
+            <select class="inputfocus font1 fw500 bxz" [(ngModel)]="segId" (change)="buscarPorSegmento()" required type="text">
+                          
+                            <option *ngFor="let segmentoInformacao of listaSegmentoInformacao" [value]="segmentoInformacao.id">{{segmentoInformacao.nmeSegmentoInformacao}}</option>
+            </select>
+
+        </div>
+        <div class="segmentos-tipo segmentos-empresa pl">
+            <div *ngFor="let responsavel of listaResponsaveis" class="responsaveis-seg">
+                <p class="tipo-segmento font1 fw700"> {{responsavel.tipoResponsabilidade.nmeTipoResponsabilidade}} </p>
+                <div class="icone-membro"></div>
+                <p class="tipo-de-resposavel fw500 font1">{{responsavel.pessoa.nmePessoa}} </p>
+                <p class="tipo-de-resposavel fw500 font1"> {{responsavel.pessoa.emlInstitucional}} </p>
+                <p class="tipo-de-resposavel fw500 font1">{{responsavel.pessoa.numTelefone}} </p>
+                <footer class="footer-grupo">
+                    <div class="icone-holder">
+                        <div class="grupo-btn excluir-grupo" routerLink="./excluirResponsavelInformacao/{{responsavel.id}}" title="Excluir responsaveis"></div>
+                    </div>
+                </footer>
+            </div>
+            <div *ngIf="segId > 0" routerLink="../cadastrarResponsavelInformacao/{{segId}}" class="responsaveis-seg addSegmentoResponsaveis">
+                <p class="tipo-segmento font1 fw700">Adicionar novo Responsável</p>
+                <div class="icone-responsavel"></div>
+                <p class="tipo-de-resposavel fw500 font1">Novo resposável</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<router-outlet>
+</router-outlet>

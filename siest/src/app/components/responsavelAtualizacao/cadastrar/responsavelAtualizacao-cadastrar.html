@@ -1,0 +1,66 @@
+<form *ngIf="empresa && segmentoInformacao" [formGroup]="responsavelAtualizacaoForm" (ngSubmit)="onSubmit()">
+    <div>
+        <nav class="abas abas-empresa">
+            <div class="aba abactive2">
+                <p class="fw700 font1"> Cadastro de Responsável Informação - {{empresa.nmeEmpresa}}({{empresa.sglEmpresa}}) </p>
+            </div>
+        </nav>
+        <div class="voltar" (click)="voltar()"></div>
+        <p class="titulo-painel pl font1 fw700"> Responsável Informação - {{segmentoInformacao.nmeSegmentoInformacao}}</p>
+        <div class="conteudopainel criar-responsavel">
+
+
+            <div class=" form-group campo bxz pl active cpfResponsavel">
+                <p class="titulo-campo font1 fw700">CPF do Responsável:</p>
+                <input (change)="buscarPessoaPorCPF()" autocomplete="off" name="nome" maskInput='999.999.999-99' required formControlName="numCpf"
+                    class="inputfocus font1 fw500 bxz buscaPessoaCPFResponsavel maskCPF " id="cpf-responsavel" placeholder="Ex: 000.000.000-00"
+                    type="text">
+
+            </div>
+
+            <div class=" form-group campo bxz pl active">
+                <p class="titulo-campo font1 fw700">Atribuição:</p>
+                <select required formControlName="fkTipoResponsabilidade" id="atribuicao-resp">
+                        <option value="">---Selecione---</option>
+                        <option *ngFor="let tipoResponsabilidade of listaTiposResponsabilidades" [value]="tipoResponsabilidade.id">{{tipoResponsabilidade.nmeTipoResponsabilidade}}</option>
+                              
+                </select>
+
+            </div>
+
+            <div class=" form-group campo bxz pl active">
+                <p class="titulo-campo font1 fw700">Nome do Responsável:</p>
+                <input required formControlName="nmePessoa" autocomplete="off" class="inputfocus font1 fw500 bxz" id="nome-responsavel" placeholder="Ex: João da Silva Veras"
+                    type="text">
+
+            </div>
+
+            <div class="form-group campo bxz pl active">
+                <p class="titulo-campo font1 fw700">E-mail Profissional do Responsável:</p>
+                <input required formControlName="emlInstitucional" class="inputfocus font1 fw500 bxz" id="email-responsavel" placeholder="Ex: responsavel@bb.com.br"
+                    type="text">
+
+            </div>
+
+            <div class=" form-group campo bxz pl active">
+                <p class="titulo-campo font1 fw700">Telefone do Responsável:</p>
+                <input maskInput='(99) 9999-99990' required formControlName="numTelefone" class="inputfocus font1 fw500 bxz maskTelefone"
+                    id="telefone-responsavel" placeholder="Ex: 99 9999-99999" type="text">
+
+            </div>
+            <div class=" form-group campo bxz pl active">
+                <p class="titulo-campo font1 fw700">Celular do Responsável:</p>
+                <input maskInput='(99) 9999-99990' required formControlName="numCelular" class="inputfocus font1 fw500 bxz maskCelular" id="celular-responsavel"
+                    placeholder="Ex: 99 9999-99999" type="text">
+
+            </div>
+            <div class="campo bxz pl">
+
+
+                <input [disabled]="responsavelAtualizacaoForm.invalid" type="submit" name="cadastrar-gestao" class="font1 fw700 botao-verde"
+                    id="cadastrar-responsavel" value="Cadastrar">
+
+            </div>
+        </div>
+    </div>
+</form>

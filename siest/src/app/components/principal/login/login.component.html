@@ -1,0 +1,26 @@
+<div style="width:100%; height:100%; z-index: 10;
+">
+    <div class="grid">
+        <form [formGroup]="formPessoa" (ngSubmit)="fazerLogin()" class="form login">
+            <div class="logo"></div>
+            <div class=" form__field">
+                <label for="login__username">
+                    <span class="hidden">Usuario</span>
+                </label>
+                <input type="text" class=" form-control" id="cpf" name="cpf" formControlName="numCpf" required >
+                <div *ngIf="pessoa.cpf === null">Campo Obrigatório</div>
+
+            </div>
+            <div class="form__field">
+                <label for="login__password">
+                    
+                    <span class="hidden">Senha</span>
+                </label>
+                <input pInputText type="password" id="password" name="password" formControlName="senha" class="form__input" placeholder="Senha" required>
+            </div>
+            <div class="form__field">
+                <button pButton type="submit" label="Click"></button>
+            </div>
+        </form>
+    </div>
+</div>

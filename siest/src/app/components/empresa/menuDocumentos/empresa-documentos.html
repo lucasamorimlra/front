@@ -1,0 +1,52 @@
+<div *ngIf="empresa" class="conteudopainel documento painel-active">
+    <div class="documentoheader">
+        <div class="pesquisar-documentos">
+            <input type="text" name="" value="" placeholder="Digite aqui o nome do arquivo">
+        </div>
+
+    </div>
+    <div class="directory font1 fw500">
+        <span class="fw500 font1"></span>
+        <span class="fw500 font1">Empresas</span> /
+        <span class="fw500 font1">{{empresa.nmeEmpresa}}</span>
+        <span class="fw500 font1">/ Documentos</span>
+
+    </div>
+    <div class="filetreelist fw500 font1">
+        <ul style="    padding-left: 0px" *ngFor="let tipoDocumento of tiposDocumento ">
+            <li (click)="selecionarTipoDocumento(tipoDocumento.id)">
+                <div [ngClass]="{'setaopen': tipoDocumento.id != idTipoDocumento,'setaicon': tipoDocumento.id  == idTipoDocumento }"></div> {{tipoDocumento.nmeTipoDocumento}}
+                <div class="menufile">
+                    <div class="menuInternoFiles">
+                        <div (click)="telaUploadDocumento(tipoDocumento.id)" class="menuopt">Upload do Documento</div>
+                    </div>
+                </div>
+            </li>
+            <ul *ngIf="tipoDocumento.id  == idTipoDocumento">
+                <li style="    padding-left: 20px;" *ngFor="let documento of documentos ">
+                    <div style="    width: 200px;" (click)="downloadDocumento(documento.id)">
+                        <a href="javascript:void(0)">{{documento.nmeDocumentoOriginal}}</a>
+                    </div>
+                    <div class="menufile">
+                        <div class="menuInternoFiles">
+                            <div (click)="deletarDocumento(documento.id)" class="menuopt">Deletar Documento</div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <ul *ngIf="!carregando && testeDocumentos() && tipoDocumento.id  == idTipoDocumento  ">
+                <li style="    padding-left: 20px;">
+                    <div></div> Não possui documentos
+
+                </li>
+            </ul>
+        </ul>
+
+
+    </div>
+
+</div>
+
+
+<router-outlet>
+</router-outlet>

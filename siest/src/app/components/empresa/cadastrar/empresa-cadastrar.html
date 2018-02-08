@@ -1,0 +1,95 @@
+<form [formGroup]="empresaForm" (ngSubmit)="onSubmit()" (ngChange)="ngOnChanges()">
+    <div class="empresa-painel painel bxz">
+        <nav class="empresa-nav">
+            <div class="empresa">
+                <div class="empresa-avatar" style="background: #efefef ;background-size: cover;"></div>
+                <p class="empresa-nome font1 fw500">{{empresaForm.value.nmeEmpresa}}</p>
+                <p class="empresa-site font1 fw500">{{empresaForm.value.urlDominio}}</p>
+                <p class="empresa-cnpj font1 fw500">{{empresaForm.value.numCnpj}}</p>
+            </div>
+            <ul class="menu-empresa">
+                <li class="bxz" id="gst-empresa">
+                    <p class="font1 fw700">Gestão</p>
+                </li>
+                <li class="bxz" id="resp-empresa">
+                    <p class="font1 fw700">Responsáveis</p>
+                </li>
+            </ul>
+        </nav>
+        <div class="empresa-painel-interna">
+            <div>
+                <nav class="abas abas-empresa">
+                    <div class="aba abactive2">
+                        <p class="fw700 font1"> Cadastro de Empresa </p>
+                    </div>
+                </nav>
+                <div class="voltar" (click)="voltar()"></div>
+                <p class="titulo-painel pl font1 fw700"></p>
+
+                <div class="conteudopainel cadastro-empresa painel-active">
+                    <div class="form-group campo bxz pl active">
+                        <p class="titulo-campo font1 fw700">Nome da Empresa:</p>
+                        <input name="nmeEmpresa" class="form-control inputfocus font1 fw500 bxz" (input)="onInput()" required id="nmeEmpresa" placeholder="Ex: Petrobras"
+                            type="text" formControlName="nmeEmpresa">
+                        <div *ngIf="empresaForm.controls.nmeEmpresa.invalid && (empresaForm.controls.nmeEmpresa.dirty || empresaForm.controls.nmeEmpresa.touched)"
+                            class="alert alert-danger ">
+                            <div *ngIf="empresaForm.controls.nmeEmpresa.errors.required">
+                                Nome da empresa obrigatório.
+                            </div>
+                            <div *ngIf="empresaForm.controls.nmeEmpresa.errors.minlength">
+                                O Nome da Empresa deve conter pelo menos 4 caracteres.
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="form-group campo bxz pl active">
+                        <p class="titulo-campo font1 fw700">Sigla da Empresa:</p>
+                        <input name="nome" class="form-control inputfocus font1 fw500 bxz" required maxlength="10" id="sigla-empresa-cadastro" placeholder="Ex: BR"
+                            type="text" formControlName="sglEmpresa">
+                    </div>
+                    <div class="form-group campo bxz pl active">
+                        <p class="titulo-campo font1 fw700">CNPJ da Empresa:</p>
+                        <input maskInput='99.999.999/9999-99' class="form-control inputfocus font1 fw500 bxz " required id="cnpj-empresa-cadastro"
+                            placeholder="Ex 91.678.221/0001-79" type="text" maxlength="18" autocomplete="off" formControlName="numCnpj">
+                        <div *ngIf="empresaForm.controls.numCnpj.invalid && (empresaForm.controls.numCnpj.dirty || empresaForm.controls.numCnpj.touched)"
+                            class="alert alert-danger ">
+                            <div *ngIf="empresaForm.controls.numCnpj.errors.required">
+                                CNPJ é obrigatório.
+                            </div>
+                            <div *ngIf="empresaForm.controls.numCnpj.errors.minlength">
+                                CNPJ deve conter 14 digitos.
+                            </div>
+                            <div *ngIf="empresaForm.controls.numCnpj.errors.valorCNPJ">
+                                Informe um CNPJ válido.
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="form-group campo bxz pl active">
+                        <p class="titulo-campo font1 fw700">URL da Empresa:</p>
+                        <input name="nome" class=" form-control inputfocus font1 fw500 bxz" formControlName="urlDominio" id="url-empresa-cadastro"
+                            type="text">
+                    </div>
+                    <div class="campo bxz pl active">
+                        <p class="titulo-campo font1 fw700">Upload da Logo</p>
+                        <input type="button" name="salvar" (click)="displayModal('a')" id="upload-logo" class="font1 fw700 botao-verde botao-upload-logo"
+                            value="Upload logo">
+                    </div>
+                    <div class="campo bxz pl">
+
+                        <input [disabled]="empresaForm.invalid" type="submit" name="salvar" id="criar-empresa" class="font1 fw700 botao-verde botao-editar-empresa"
+                            value="Salvar">
+                        <div *ngIf="msgErro" class="alert alert-danger ">
+
+                            {{msgErro}}
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>

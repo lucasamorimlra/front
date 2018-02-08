@@ -1,0 +1,210 @@
+@font-face {
+    font-family: "Museo Sans Rounded";
+    src: url(../../../../assets/fonts/MuseoSansRounded-100.otf);
+    font-weight: 100;
+}
+@font-face {
+    font-family: "Museo Sans Rounded";
+    src: url(../../../../assets/fonts/MuseoSansRounded-300.otf);
+    font-weight: 300;
+}
+@font-face {
+    font-family: "Museo Sans Rounded";
+    src: url(../../../../assets/fonts/MuseoSansRounded-500.otf);
+    font-weight: 500;
+}
+@font-face {
+    font-family: "Museo Sans Rounded";
+    src: url(../../../../assets/fonts/MuseoSansRounded-700.otf);
+    font-weight: 700;
+}
+@font-face {
+    font-family: "Museo Sans Rounded";
+    src: url(../../../../assets/fonts/MuseoSansRounded-900.otf);
+    font-weight: 900;
+}
+@font-face {
+    font-family: "Proxima Nova";
+    src: url(../../../../assets/fonts/proximanova-bold.ttf);
+    font-weight: 900;
+}
+@font-face {
+    font-family: "Proxima Nova";
+    src: url(../../../../assets/fonts/proximanova-semibold.ttf);
+    font-weight: 700;
+}
+@font-face {
+    font-family: "Proxima Nova";
+    src: url(../../../../assets/fonts/proximanova-regula.ttf);
+    font-weight: 500;
+}
+@font-face {
+    font-family: "Proxima Nova";
+    src: url(../../../../assets/fonts/proximanova-regularit.ttf);
+    font-style: italic;
+}
+*{
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.font1{
+  font-family: "Proxima Nova";
+}
+.font2{
+  font-family: "Museo Sans Rounded";
+}
+.fsit{
+  font-style: italic;
+}
+.fw100{
+  font-weight: 100;
+}
+.fw300{
+  font-weight: 300;
+}
+.fw500{
+  font-weight: 500;
+}
+.fw700{
+  font-weight: 700;
+}
+.fw900{
+  font-weight: 900;
+}
+
+
+.modalupload{
+  width: 520px;
+  height: 430px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -250px;
+  background-color: #fff;
+  margin-top: -275px;
+}
+.close-modal{
+  font-size: 24px;
+  transform: rotate(46deg);
+  position: absolute;
+  top: -30px;
+  right: -26px;
+  color: #fff;
+  cursor: pointer;
+}
+.tipo{
+  height: 50px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  border-bottom: solid 1px #efefef;
+  background-color: #fff;
+}
+.tipo label{
+  color: #6b6b6b;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 17px;
+  height: 49px;
+  border-bottom: none;
+  user-select: none;
+  text-align: center;
+  width: 100%;
+  display: block;
+}
+.tipo span{
+  color: #b1b1b1;
+}
+.arquivos{
+  padding-bottom: 5px;
+  overflow: auto;
+  z-index: 2;
+  /* height: 50px; */
+  padding-top: 11px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  border-bottom: solid 1px #efefef;
+}
+.tag{
+  margin-bottom: 7px;
+  position: relative;
+  margin-left: 10px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 3px 35px 0px 4px;
+  border-radius: 25px;
+  float: left;
+  background-color: #dedede;
+  height: 25px;
+}
+.tag span{
+  font-size: 14px;
+  padding-left: 10px;
+  color: #4e4e4e;
+}
+.tag .close-btn{
+  background-color: #bdbdbd;
+  color: #ffffff;
+  height: 15px;
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  cursor: pointer;
+  padding-left: 4px;
+  width: 15px;
+  font-size: 12px;
+}
+.tag .rounded{
+  border-radius: 50%;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.dropzonejs{
+  height: 325px;
+  width: 100%;
+  overflow: auto;
+}
+#my-awesome-dropzone{
+  background-color: #f5f7fb;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  border: none;
+}
+.dz-message span{
+  color: #888;
+  font-family: "Museo Sans Rounded";
+  font-weight: 500;
+}
+.enviararquivos{
+  margin: 8px auto;
+  padding: 0 20px;
+  height: 30px;
+  font-size: 16px;
+  display: block;
+  cursor: pointer;
+  color: #fff;
+  background-color: #66889d;
+  border-radius: 5px;
+  border: solid 1px #576871;
+}
+.overlay{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+dropzone.dz-wrapper>.dropzone {
+    position: relative;
+    overflow: visible; 
+    width: 100%;
+    min-height: 0;
+    padding: 0;
+    border: none;
+    color: #666;
+    background: 0 0;
+}

@@ -1,0 +1,15 @@
+<div class="pesquisa-wrapper">
+    <div class="pesquisa ">
+        <input type="text" name="" (input)="getEmpresaPorNome()" [(ngModel)]="filtroNmeEmpresa" class="font1 fw500 bxz " id="pesquisa-empresas"
+            value="">
+    </div>
+    <div id="result-pesquisa">
+        <div *ngFor="let empresa of empresasFiltradas; let i = index" class="pesquisa search-pesquisa">
+
+            <div class="avatar-empresa" [ngStyle]="getBackgroundImage(i)"></div> 
+            <p (click)="selecionar(empresa)" class="font1 fw500">{{empresa.nmeEmpresa}}</p>
+            <div (click)="chamarModalExcluir(empresa)" class="excluirEmpresa"></div>
+        </div>
+
+    </div>
+</div>

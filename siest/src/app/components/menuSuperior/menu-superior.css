@@ -1,0 +1,9 @@
+
+.menu-superior {
+    width: -webkit-calc(100% - 266px);
+    width: calc(100% - 266px);
+    height: 65px;
+    background-color: #fff;
+    border-bottom: solid 1px #e4e4e4;
+    margin-left: 266px;
+}

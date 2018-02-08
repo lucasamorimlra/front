@@ -1,0 +1,44 @@
+
+<form *ngIf="empresa"  [formGroup]="empresaForm" (ngSubmit)="onSubmit()">
+    <div>
+        <nav class="abas abas-empresa">
+            <div class="aba abactive2">
+                <p class="fw700 font1"> Editar Empresa - {{empresa.nmeEmpresa}}({{empresa.sglEmpresa}}) </p>
+            </div>
+        </nav>
+        <div class="voltar" (click)="voltar()"></div>
+        <p class="titulo-painel pl font1 fw700">Editar Empresa</p>
+        <div class="conteudopainel cadastro-empresa painel-active">
+            <div class="campo bxz pl active">
+                <p class="titulo-campo font1 fw700">Nome da Empresa:</p>
+                <input name="nome" class="inputfocus font1 fw500 bxz" required id="nome-empresa-cadastro" placeholder="Ex: Petrobras" type="text"
+                    disabled="" value="{{empresa.nmeEmpresa}}">
+            </div>
+            <div class="campo bxz pl active">
+                <p class="titulo-campo font1 fw700">Sigla da Empresa:</p>
+                <input name="nome" class="inputfocus font1 fw500 bxz" required id="sigla-empresa-cadastro" placeholder="Ex: BR" type="text"
+                    disabled value="{{empresa.sglEmpresa}}">
+            </div>
+            <div class=" campo bxz pl active">
+                <p class="titulo-campo font1 fw700">CNPJ da Empresa:</p>
+                <input name="nome" class="inputfocus font1 fw500 bxz " required id="cnpj-empresa-cadastro" placeholder="Ex 91.678.221/0001-79"
+                    type="text" disabled="" value="{{empresa.numCnpj}}">
+            </div>
+            <div class="form-group campo bxz pl active">
+                <p class="titulo-campo font1 fw700">URL da Empresa:</p>
+                <input name="nome" formControlName="urlDominio" class="inputfocus font1 fw500 bxz" value={{empresa.urlDominio}} id="url-empresa-cadastro"
+                    type="text">
+            </div>
+            <div class="campo bxz pl active">
+                <p class="titulo-campo font1 fw700">Upload da Logo</p>
+                <input type="button" name="salvar" (click)="displayModal('a')" id="upload-logo" class="font1 fw700 botao-verde botao-upload-logo" value="Upload logo">
+            </div>
+           
+            
+            <div class="campo bxz pl">
+
+                <input type="submit" name="salvar" id="criar-empresa" class="font1 fw700 botao-verde botao-editar-empresa" value="Salvar">
+            </div>
+        </div>
+    </div>
+</form>

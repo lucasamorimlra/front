@@ -1,0 +1,15 @@
+<nav class="menu-superior">
+    <div *ngIf="router.url == '/empresa' " routerLink="./empresa/cadastrar" class="adicionar-botao adicionar-empresa">
+        <div class="add" alt="">
+        </div>
+        <p class="addname font1 fw300">Adicionar Empresa</p>
+    </div>
+    <div class="navegacao">
+        <p class="nome-usuario font2 fw500">
+            Bem vindo,
+            <span id="username" class="font2 fw700">Usuário</span>
+        </p>
+        <div (click)="fazerLogOut()" class="sair"></div>
+        <div class="config "></div>
+    </div>
+</nav>

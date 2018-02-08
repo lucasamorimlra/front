@@ -1,0 +1,53 @@
+
+.menu-lateral {
+    width: 266px;
+    height: 100%;
+    position: fixed;
+    background-color: rgb(67, 104, 138);
+}
+
+.menu-lateral .logosiest {
+    height: 65px;
+    width: 100%;
+    background-image: url(../../../assets/img/logo.png);
+    background-repeat: no-repeat;
+    background-position: 70px center;
+    cursor: pointer;
+}
+
+.menu-lateral .lateral li {
+    height: 56px;
+    width: 100%;
+    position: relative;
+    opacity: 1;
+    cursor: pointer;
+}
+
+.menu-lateral .lateral li:hover {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+.menu-lateral .lateral li img {
+    position: absolute;
+    top: 17px;
+    height: 21px;
+    left: 26px;
+}
+
+.menu-lateral .lateral li .menuitem {
+    font-size: 16px;
+    color: #fff;
+    padding-top: 18px;
+    padding-left: 70px;
+}
+
+.menu-lateral .lateral .active {
+    background-color: rgb(49, 80, 113) !important;
+    opacity: 1;
+    cursor: pointer;
+}
+
+.menu-lateral .lateral .active .menuitem {
+    font-weight: 700;
+}
+

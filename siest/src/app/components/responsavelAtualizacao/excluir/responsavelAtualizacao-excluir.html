@@ -1,0 +1,12 @@
+<div *ngIf="responsavelAtualizacao" class="overlay modal-exclusao">
+    <div class="modal">
+        <div class="botao-fechar-modal" (click)="fecharModal()"></div>
+        <p class="font1 modal-title center fw700">Deseja confirmar exclusão?</p>
+        <p class="font1 modal-subtitle center fw500 valor-exclusao">O Responsável {{responsavelAtualizacao.pessoa.nmePessoa}} não será mais {{responsavelAtualizacao.tipoResponsabilidade.nmeTipoResponsabilidade}}
+                do segmento de informação  {{responsavelAtualizacao.segmentoInformacao.nmeSegmentoInformacao}}
+        </p>
+        <p></p>
+        <input type="button" (click)="excluirResponsavelPeloSeguimento()" class="mt20 btn-confirmar modal-button botao-verde2 center btn-confirmar-exclusao fw700 font1"
+            name="" value="Confirmar">
+    </div>
+</div>

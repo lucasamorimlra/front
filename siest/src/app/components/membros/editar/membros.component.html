@@ -1,0 +1,78 @@
+<nav *ngIf="vagas" class="abas-gerenciar">
+    <div routerLink="../../../../membro/{{entidadeId}}/{{vaga.id}}/{{empresaId}}" (click)="atualizarMembro()" class="aba" *ngFor="let vaga of vagas"
+        [ngClass]="{'abactive': abaAtiva == vaga.id}">
+
+        <p class="fw700 font1">
+
+            <img src="../../../../assets/img/membro-cadastro.png" *ngIf="verificaMembroVaga(vaga.id)">
+            <img src="../../../../assets/img/membro-cadastro-nao-visto.png" *ngIf="verificaMembroVaga(vaga.id) !== true">
+
+        </p>
+
+    </div>
+</nav>
+
+<div class="voltar" (click)="voltar()"></div>
+
+
+<div *ngIf="pessoaForm" class="conteudopainel criar-nova-pessoa painel-active">
+
+    <form [formGroup]="pessoaForm" (ngSubmit)="onSubmit()">
+
+        <div class="form-control  campo common bxz pl cpfPessoa">
+            <p class="titulo-campo font1 fw700">Numero do CPF:</p>
+            <input value="0" id="id-pessoa" class="hidden">
+            <input name="criarPessoaCpf" (blur)="buscarPessoaPorCPF();" valorCPF maskInput='999.999.999-99' formControlName="numCpf"
+                class="inputfocus font1 fw500 bxz maskCPF" required id="numCpf" placeholder="Ex: 000.000.000-98 " type="text"
+                maxlength="14" autocomplete="off">
+        </div>
+        <div class=" form-control  campo common bxz pl">
+            <p class="titulo-campo font1 fw700">Nome da Pessoa:</p>
+            <input name="criarPessoaNome" formControlName="nmePessoa" class="form-control inputfocus font1 fw500 bxz" id="criar-pessoa-nome"
+                required placeholder="Ex: João da Silva" type="text">
+        </div>
+        <div class=" form-control  campo common bxz pl">
+            <p class="titulo-campo font1 fw700">Numero do RG:</p>
+            <input name="criarPessoaRg" formControlName="numRg" required id="criar-pessoa-rg" placeholder="Ex: 0.000.000" type="text">
+        </div>
+        <div class=" form-control  campo common bxz pl">
+            <p class="titulo-campo font1 fw700">Data de emissão do RG:</p>
+            <input name="criarPessoaEmissaoRg" required formControlName="dtaEmissaoRg" class="form-control inputfocus font1 fw500 bxz"
+                placeholder="Ex: 28/01/2011" type="date" maxlength="10" autocomplete="off">
+        </div>
+        <div class=" form-control  campo common bxz pl">
+            <p class="titulo-campo font1 fw700">Orgão de emissão do RG:</p>
+            <input name="criarPessoaOrgaoRg" formControlName="orgEmissaoRg" required class="form-control inputfocus font1 fw500 bxz"
+                id="criar-pessoa-orgao-rg" placeholder="Ex: Policia Civil" type="text">
+        </div>
+        <div class=" form-control  campo common bxz pl">
+            <p class="titulo-campo font1 fw700">Nº de Telefone:</p>
+            <input name="criarPessoaTelefone" maskInput="(99) 9999-99990" formControlName="numTelefone" required class="form-control inputfocus font1 fw500 bxz"
+                id="criar-pessoa-telefone" placeholder="Ex: XX 00000-0000" type="text" maxlength="15" autocomplete="off">
+        </div>
+        <div class=" form-control  campo common bxz pl">
+            <p class="titulo-campo font1 fw700">Nº de Celular:</p>
+            <input name="criarPessoaCelular" maskInput="(99) 9999-99990" formControlName="numCelular" required class="form-control inputfocus font1 fw500 bxz"
+                id="criar-pessoa-celular" placeholder="Ex: XX 00000-0000" type="text" maxlength="16" autocomplete="off">
+        </div>
+        <div class=" form-control  campo common bxz pl">
+            <p class="titulo-campo font1 fw700">Endereço de Email Particular:</p>
+            <input name="criarPessoaEmailParticular" required formControlName="emlParticular" class="form-control inputfocus font1 fw500 bxz"
+                id="criar-pessoa-email-particular" requerido="true" email="true" placeholder="Ex: joao.silva@email.com" type="text">
+        </div>
+        <div class="form-control  campo common bxz pl">
+            <p class="titulo-campo font1 fw700">Endereço de Email Institucional:</p>
+            <input name="criarPessoaEmailInstitucional" required formControlName="emlInstitucional" class="form-control inputfocus font1 fw500 bxz"
+                id="criar-pessoa-email-institucional" requerido="true" placeholder="Ex: joao.silva@mp.com" type="text">
+        </div>
+        <div class=" form-control  campo bxz pl">
+            <p class="titulo-campo pessoa-operacao font1 fw700">Deseja cadastrar?</p>
+            <input [disabled]="pessoaForm.invalid" type="submit" name="criarPessoa" class="font1 fw700 botao-verde pessoa-operacao-button"
+                id="cadastrar-pessoa" value="Salvar">
+            <div *ngIf="msgErro" class="alert alert-danger ">
+
+                {{msgErro}}
+            </div>
+        </div>
+    </form>
+</div>

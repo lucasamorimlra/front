@@ -1,0 +1,78 @@
+<div *ngIf="entidadeGestora">
+    <nav class="abas abas-empresa">
+        <div class="aba abactive2">
+            <p class="fw700 font1"> Entidade Gestora - {{entidadeGestora.tipoGestao.nmeTipoGestao}} </p>
+        </div>
+    </nav>
+    <div class="voltar" (click)="voltar()"></div>
+    <p class="titulo-painel pl font1 fw700"></p>
+    <div class="conteudopainel membros-info pl painel-active">
+        <div class="gestaoinfo">
+            <ul>
+                <li>
+                    <p class="titulo-campo font1 fw700">Remuneração Base:</p>
+                    <span class="tipo-de-gestao info-campo font1 fw500 db">R$ {{remuneracaoBase()}}</span>
+                </li>
+                <li>
+                    <p class="titulo-campo font1 fw700">Vagas Titulares:</p>
+                    <span class="info-campo vaga-titular-numero font1 fw500 db">{{entidadeGestora.numVagasTitular}}</span>
+                </li>
+                <li>
+                    <p class="titulo-campo font1 fw700">Vagas Suplentes:</p>
+                    <span class="vaga-suplente-numero info-campo font1 fw500 db">{{entidadeGestora.numSuplentes}}</span>
+                </li>
+
+            </ul>
+        </div>
+        <div class="gestaoinfo mt20">
+            <ul>
+                <li>
+                    <p class="titulo-campo font1 fw700">Nº Reconduções:</p>
+                    <span class="recond-numero info-campo font1 fw500 db">{{entidadeGestora.numRecond}}</span>
+                </li>
+                <li>
+                    <p class="titulo-campo font1 fw700">Mandato Unificado:</p>
+                    <span class="mandato-unificado info-campo font1 fw500 db">{{entidadeGestora.mandatoUnificado}}</span>
+                </li>
+                <li>
+                    <p class="titulo-campo font1 fw700">Local da Reunião:</p>
+                    <span class="local-reuniao-info info-campo font1 fw500 db">{{entidadeGestora.lclReuniaoView}}</span>
+                </li>
+            </ul>
+        </div>
+        <div class="gestaoinfo mt20">
+            <ul>
+                <li>
+                    <p class="titulo-campo font1 fw700">Periodicidade:</p>
+                    <span class="periodicidade-infi info-campo font1 fw500 db">{{entidadeGestora.rnuPeriodicidadeView}}</span>
+                </li>
+                <li *ngIf="entidadeGestora.dtaInicio">
+                    <p class="titulo-campo font1 fw700">Início Mandato:</p>
+                    <span class="data-inicio info-campo font1 fw500 db">{{entidadeGestora.dtaInicioFormatada}}</span>
+                </li>
+                <li *ngIf="entidadeGestora.dtaFim">
+                    <p class="titulo-campo font1 fw700">Fim Mandato:</p>
+                    <span class="data-fim info-campo font1 fw500 db">{{entidadeGestora.dtaFimFormatada}}</span>
+                </li>
+            </ul>
+        </div>
+
+        <div id="cargo-container">
+            <div *ngFor="let vaga of vagas" class="membro-gestao">
+                <div routerLink="../../membro/{{entidadeGestora.id}}/{{vaga.id}}/{{idEmpresa}}">
+                    <p class="nome-membro font1 fw700">{{selecionaNomeMembro(vaga.id)}}</p>
+                    <div class="icone-membro"></div>
+                    <p class="cargo-membro fw500 font1">{{vaga.cargo.nmeCargo}}</p>
+                    <p class="tipo-de-membro fw500 font1">{{vaga.nmeTipoVaga}}</p>
+                </div>
+                <footer class="footer-grupo">
+                    <div class="icone-holder">
+                        <div class="grupo-btn editar-entidade" title="Editar Vaga"></div>
+                        <div class="grupo-btn excluir-entidade" *ngIf="selecionaNomeMembro(vaga.id) !== 'Vazia'" (click)="excluirMembro(vaga.id,selecionaNomeMembro(vaga.id),vaga.cargo.nmeCargo)" title="Excluir Vaga"></div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+
+    </div>
+</div>

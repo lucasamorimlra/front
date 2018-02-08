@@ -1,0 +1,135 @@
+<div *ngIf="entidadeGestora">
+    <form [formGroup]="entidageGestoraForm" (ngSubmit)="editarEntidadeGestora()" class="criar-grupo-form" method="post">
+        <nav class="abas abas-empresa">
+            <div class="aba abactive2">
+                <p class="fw700 font1"> Editar Entidade Gestora - {{entidadeGestora.tipoGestao.nmeTipoGestao}} </p>
+            </div>
+        </nav>
+        <div class="voltar" (click)="voltar()"></div>
+        <p class="titulo-painel pl font1 fw700"></p>
+        <div class="conteudopainel criar-grupo">
+            <div class="form-group campo bxz pl">
+                <p class="titulo-campo font1 fw700">Local da Reunião:</p>
+                <input name="local-reuniao" formControlName="lclReuniao" class="inputfocus font1 fw500 bxz" type="text">
+            </div>
+            <div class="form-group campo bxz pl">
+                <p class="titulo-campo font1 fw700">Periodicidade da Reunião:</p>
+                <select formControlName="rnuPeriodicidade" class="inputfocus font1 fw500 bxz">
+                    <option value="">---Selecione---</option>
+                    <option value="0">Semanal</option>
+                    <option value="1">Mensal</option>
+                    <option value="2">Bimestral</option>
+                    <option value="3">Trimestral</option>
+                    <option value="4">Semestral</option>
+                    <option value="5">Anual</option>
+                </select>
+
+            </div>
+            <div class="form-group divisao3  campo2 bxz pl">
+                <p class="titulo-campo font1 fw700">Nº de Titulares</p>
+                <input disabled formControlName="numVagasTitular" class="inputfocus font1 fw500 bxz" type="number" placeholder="0">
+            </div>
+            <div class="form-group divisao3  campo2 bxz pl">
+                <p class="titulo-campo font1 fw700">Nº de Suplentes</p>
+                <input disabled name="quantidadeSuplentes" formControlName="numSuplentes" class="inputfocus font1 fw500 bxz" type="number"
+                    placeholder="0" id="numero-suplentes">
+            </div>
+            <div class="form-group divisao3  campo2 bxz pl">
+                <p class="titulo-campo font1 fw700" style="width: 150px;">Nº de Reconduções</p>
+                <input disabled name="quantidadeReconducao" formControlName="numRecond" class="inputfocus font1 fw500 bxz" type="number"
+                    placeholder="0" id="numero-reconducoes">
+            </div>
+
+            <div *ngIf="stsMandatoUnificadoTest">
+                <div class=" form-group campo bxz pl">
+                    <p class="titulo-campo font1 fw700">Inicio do Mandato:</p>
+                    <input name="inicio-mandato" required formControlName="dtaInicio" class="font1 fw500 bxz" type="month" placeholder="Ex: 15/04/1999"
+                        autocomplete="off">
+                </div>
+                <div class=" form-group campo bxz pl">
+                    <p class="titulo-campo font1 fw700">Fim do Mandato:</p>
+                    <input name="fim-mandato" required formControlName="dtaFim" class="font1 fw500 bxz" type="month" placeholder="Ex: 15/04/1999"
+                        autocomplete="off">
+                </div>
+            </div>
+            <div class="form-group  campo bxz pl">
+                <p class="titulo-campo remuneracao-campo font1 fw700">Remuneração Base:</p>
+                <input formControlName="vlrRemuneracaoBase" maskCurrency class="inputfocus font1 fw500 bxz" placeholder="Ex: R$ 15.000,00"
+                    type="text">
+            </div>
+            <div class="form-group  campo bxz pl">
+                <input [disabled]="entidageGestoraForm.invalid" type="submit" name="editar-entidadeGestora" class="font1 fw700 botao-verde"
+                    id="editar-entidadeGestora" value="Salvar">
+                <input [disabled]="entidageGestoraForm.invalid" (click)="listaDeVagas()" type="button" name="visualizar-vagas" class="font1 fw700 botao-verde"
+                    id="visualizar-vagas" value="Editar Vagas ">
+            </div>
+        </div>
+
+
+    </form>
+</div>
+
+
+<div [hidden]="vagasVisualizar" class="overlay adicionar-vaga">
+    <div class="modal">
+        <div class="botao-fechar-modal" (click)="sairModal()"></div>
+        <table id="table-cargos" style="width:100%">
+            <tbody>
+                <tr class="cabecalho-modal">
+                    <th class="fw900 font1">Nº da Vaga</th>
+                    <th class="fw900 font1">Tipo da Vaga</th>
+                    <th class="fw900 font1">Cargo</th>
+                    <th class="fw900 font1">Indicante</th>
+                    <th class="fw900 font1">Observação</th>
+                    <th class="fw900 font1">Remuneração</th>
+                    <th class="fw900 font1">Inicio Mdto.</th>
+                    <th class="fw900 font1">Fim Mdto.</th>
+                    <th class="fw900 font1">Excluir</th>
+                </tr>
+
+                <tr *ngFor="let vagaForm of listaVagasForm" [formGroup]="vagaForm" class="table-conteudo">
+                    <td class="form-group fw700 font1"> {{vagaForm.controls.nroVaga.value}} </td>
+                    <td class=" form-group fw700 font1"> {{vagaForm.controls.tpoVaga.value}} </td>
+                    <td class="fw500 form-group   font1">
+                        <select class="fw500 selectTitulares font1 inputtb" required formControlName="fkCargo">
+                                <option value="">---Selecione---</option>
+                                <option *ngFor="let cargo of listadeCargos" value="{{cargo.id}}" >
+                                    {{cargo.nmeCargo}}
+                                  </option>
+                                </select>
+                    </td>
+                    <td class="fw500 form-group   font1">
+                        <select class="fw500 selectTitulares font1 inputtb" required formControlName="fkIndicante">
+                                <option value="">---Selecione---</option>
+                                <option *ngFor="let indicante of listadeIndicantes" value="{{indicante.id}}" >
+                                    {{indicante.nmeIndicante}}
+                                  </option>
+                                </select>
+                    </td>
+                    <td class="fw500 form-group font1">
+                        <input type="text" class="fw500 font1 inputtb descricao" formControlName="descVaga">
+                    </td>
+                    <td class="fw500 form-group font1">
+                        <input type="text" maskCurrency formControlName="vlrRemuneracaoBaseVaga" class="inputtb fw500 remuneracaoTitular font1" placeholder="Ex.: 15000.00">
+                    </td>
+                    <td class="fw500 form-group font1">
+                        <input type="month" formControlName="dtaInicio" class="inputtb fw500 inicioTitular font1">
+                    </td>
+                    <td class="fw500 form-group font1">
+                        <input type="month" formControlName="dtaFim" class="inputtb fimTitular fw500 font1">
+                    </td>
+                    <td class="fw500 font1">
+                        <div class="excluir" (click)="excluirVaga(vagaForm.controls.id.value,vagaForm.controls.nroVaga.value)"></div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <input (click)="criarVagaTitular()" type="submit" name="salvar" id="criar-cargo" class="font1 fw700 botao-verde2 center"
+            value="Nova Vaga Titular">
+
+        <input (click)="criarVagaSuplente()" type="submit" name="salvar" id="criar-cargo" class="font1 fw700 botao-verde2 center"
+            value="Nova Vaga Suplente">
+        <input [disabled]="validarVagas()" (click)="salvarVagas()" type="submit" name="salvar" id="criar-cargo" class="font1 fw700 botao-verde2 center"
+            value="Salvar">
+    </div>
+</div>

@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>SIEST - Gerenciamento</title>
+    <link rel="stylesheet" href="assets/css/fonts.css">
+    <link rel="stylesheet" href="assets/css/siest.css">
+    <link rel="stylesheet" href="assets/jquery-ui/jquery-ui.css">
+    <script src="https://cdn.ravenjs.com/3.16.1/raven.min.js" crossorigin="anonymous"></script>
+    <script src="assets/js/require.js" charset="utf-8"></script>
+    <script src="assets/js/app.js" charset="utf-8"></script>
+</head>
+
+<body>
+    <div class="fundo hidden">
+        <div id="fountainG">
+            <div id="fountainG_1" class="fountainG"></div>
+            <div id="fountainG_2" class="fountainG"></div>
+            <div id="fountainG_3" class="fountainG"></div>
+            <div id="fountainG_4" class="fountainG"></div>
+            <div id="fountainG_5" class="fountainG"></div>
+            <div id="fountainG_6" class="fountainG"></div>
+            <div id="fountainG_7" class="fountainG"></div>
+            <div id="fountainG_8" class="fountainG"></div>
+        </div>
+    </div>
+    <nav class="menu-lateral">
+        <div class="logosiest"></div>
+        <ul class="lateral">
+            <li class="menu menu-home-item">
+                <img src="assets/img/home.png" alt="">
+                <p class=" menuitem font1 fw500">Home</p>
+            </li>
+            <li class="menu menu-empresas-item">
+                <img src="assets/img/empresas.png" alt="">
+                <p class=" menuitem font1 fw500">Empresas</p>
+            </li>
+            <li class="menu menu-gerenciar-item">
+                <img src="assets/img/funcionalidades.png" alt="">
+                <p class=" menuitem font1 fw500">Gerenciar</p>
+            </li>
+        </ul>
+    </nav>
+
+    <nav class="menu-superior">
+        <div class="adicionar-botao adicionar-empresa hidden">
+            <div class="add" alt="">
+            </div>
+            <p class="addname font1 fw300">Adicionar Empresa</p>
+        </div>
+        <div class="navegacao">
+            <p class="nome-usuario font2 fw500">
+                Bem vindo, <span id="username" class="font2 fw700">Usuário</span>
+            </p>
+            <div class="sair"></div>
+            <div class="config "></div>
+        </div>
+    </nav>
+    <section class="conteudo">
+        <div class="conteudo-painel">
+            <div class="pesquisa-wrapper">
+                <div class="pesquisa hidden">
+                    <input type="text" name="" class="font1 fw500 bxz " id="pesquisa-empresas" value="">
+                </div>
+                <p id="result-title" class="font1 fw700 search-result">Resultados da Pesquisa:</p>
+                <div id="result-pesquisa">
+
+                </div>
+            </div>
+            <div class="gerenciar-painel painel bxz hidden">
+                <nav class="gerenciar-nav">
+                    <ul class="menu-gerenciar">
+                        <li class="bxz" id="opcoes-menu">
+                            <p class="font1 fw700 titulo-lateral"></p>
+                        </li>
+                        <li class="bxz" id="pessoas-menu">
+                            <p class="font1 fw700">Manter Pessoas</p>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="gerenciar-painel-interna">
+                    <nav class="abas-gerenciar">
+                        <div class="aba abactive2">
+                            <p class="fw700 font1">Gerenciar<span class="fw500 font1 fsit" id="titulo-gerenciar"></span>
+                            </p>
+                        </div>
+                    </nav>
+                    <div class="voltar"></div>
+                    <p class="titulo-painel-gerenciar pl font1 fw700"></p>
+                    <div class="conteudopainel criar-nova-pessoa">
+                        <form id="pessoaForm">
+
+                            <div class="campo common bxz pl cpfPessoa">
+                                <p class="titulo-campo font1 fw700">Numero do CPF:</p>
+                                <input value="0" id="id-pessoa" class="hidden">
+                                <input name="criarPessoaCpf" class="inputfocus font1 fw500 bxz maskCPF" id="criar-pessoa-cpf" cpf="true" requerido="true" placeholder="Ex: 000.000.000-98 " type="text">
+                                <span class="reqStar">*</span>
+                            </div>
+                            <div class="campo common bxz pl">
+                                <p class="titulo-campo font1 fw700">Nome da Pessoa:</p>
+                                <input name="criarPessoaNome" class="inputfocus font1 fw500 bxz" id="criar-pessoa-nome" requerido="true" placeholder="Ex: João da Silva" type="text">
+                                <span class="reqStar">*</span>
+
+                            </div>
+                            <div class="campo2 common bxz pl">
+                                <p class="titulo-campo font1 fw700">Numero do RG:</p>
+                                <input name="criarPessoaRg" class="inputfocus font1 fw500 bxz" id="criar-pessoa-rg" placeholder="Ex: 0.000.000" type="text">
+
+                            </div>
+                            <div class="campo2 common bxz pl">
+                                <p class="titulo-campo font1 fw700">Data de emissão do RG:</p>
+                                <input name="criarPessoaEmissaoRg" class="inputfocus font1 fw500 bxz maskData" id="criar-pessoa-emissao-rg" placeholder="Ex: 28/01/2011" type="text">
+                            </div>
+                            <div class="campo common bxz pl">
+                                <p class="titulo-campo font1 fw700">Orgão de emissão do RG:</p>
+                                <input name="criarPessoaOrgaoRg" class="inputfocus font1 fw500 bxz" id="criar-pessoa-orgao-rg" placeholder="Ex: Policia Civil" type="text">
+                            </div>
+                            <div class="campo common bxz pl">
+                                <p class="titulo-campo font1 fw700">Nº de Telefone:</p>
+                                <input name="criarPessoaTelefone" class="inputfocus font1 fw500 bxz maskTelefone" id="criar-pessoa-telefone" placeholder="Ex: XX 00000-0000" type="text">
+                            </div>
+                            <div class="campo common bxz pl">
+                                <p class="titulo-campo font1 fw700">Nº de Celular:</p>
+                                <input name="criarPessoaCelular" class="inputfocus font1 fw500 bxz maskCelular" id="criar-pessoa-celular" placeholder="Ex: XX 00000-0000" type="text">
+                            </div>
+                            <div class="campo common bxz pl">
+                                <p class="titulo-campo font1 fw700">Endereço de Email Particular:</p>
+                                <input name="criarPessoaEmailParticular" class="inputfocus font1 fw500 bxz" id="criar-pessoa-email-particular" requerido="true" email="true" placeholder="Ex: joao.silva@email.com" type="text">
+                                <span class="reqStar">*</span>
+
+                            </div>
+                            <div class="campo common bxz pl">
+                                <p class="titulo-campo font1 fw700">Endereço de Email Institucional:</p>
+                                <input name="criarPessoaEmailInstitucional" class="inputfocus font1 fw500 bxz" id="criar-pessoa-email-institucional" email="true" requerido="true" placeholder="Ex: joao.silva@mp.com" type="text">
+                                <span class="reqStar">*</span>
+
+                            </div>
+                        </form>
+                        <div class="campo bxz pl">
+                            <p class="titulo-campo pessoa-operacao font1 fw700">Deseja cadastrar?</p>
+                            <input type="button" name="criarPessoa" class="font1 fw700 botao-verde pessoa-operacao-button" id="cadastrar-pessoa" value="Salvar">
+                        </div>
+                    </div>
+                    <div class="conteudopainel pl listar-pessoas">
+                        <!-- <div class="pessoas-card add-pessoa">
+                            <p class="nome-pessoa font1 fw700">Criar Pessoa</p>
+                            <div class="icone-gestao-adicionar"></div>
+                            <p class="tipo-de-info fw500 font1">Adicionar nova Pessoa</p>
+                            <footer class="footer-grupo"></footer>
+                        </div>
+                        <div class="pessoas-card">
+                            <p class="nome-pessoa font1 fw700">João Henrique</p>
+                            <div class="icone-info"></div>
+                            <p class="pessoa-cpf fw500 font1">051.141.121-97</p>
+                            <p class="pessoa-email fw500 font1"><a class="__cf_email__" href="/cdn-cgi/l/email-protection" data-cfemail="62080d030d4c0a070c100b131707220a0d160f030b0e4c010d0f">[email&#160;protected]</a>
+                                <script data-cfhash='f9e31' type="text/javascript">
+                                    /* <![CDATA[ */ ! function(t, e, r, n, c, a, p)
+                                    {
+                                        try
+                                        {
+                                            t = document.currentScript || function()
+                                            {
+                                                for (t = document.getElementsByTagName('script'), e = t.length; e--;)
+                                                    if (t[e].getAttribute('data-cfhash')) return t[e]
+                                            }();
+                                            if (t && (c = t.previousSibling))
+                                            {
+                                                p = t.parentNode;
+                                                if (a = c.getAttribute('data-cfemail'))
+                                                {
+                                                    for (e = '', r = '0x' + a.substr(0, 2) | 0, n = 2; a.length - n; n += 2) e += '%' + ('0' + ('0x' + a.substr(n, 2) ^ r).toString(16)).slice(-2);
+                                                    p.replaceChild(document.createTextNode(decodeURIComponent(e)), c)
+                                                }
+                                                p.removeChild(t)
+                                            }
+                                        }
+                                        catch (u)
+                                        {}
+                                    }() /* ]]> */
+                                </script>
+                            </p>
+                            <p class="pessoa-telefone fw500 font1">(61)3556-4493</p>
+                            <footer class="footer-grupo">
+                                <div class="icone-holder">
+                                    <div class="grupo-btn editar-grupo" title="Editar Grupo"></div>
+                                    <div class="grupo-btn excluir-grupo" title="Excluir Grupo"></div>
+                                </div>
+                            </footer>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+            <div empresaid="1" class="empresa-painel painel bxz hidden">
+                <nav class="empresa-nav">
+                    <div class="empresa">
+                        <input name="id-empresa" class="id-empresa hidden" value="0">
+                        <div class="edit editar-empresa">
+                            <div class="edit-dropdown hidden">
+
+                            </div>
+                        </div>
+                        <div class="empresa-avatar" style="background: #efefef ;background-size: cover;"></div>
+                        <p class="empresa-nome font1 fw500">Banco do Brasil</p>
+                        <p class="empresa-site font1 fw500">www.bb.com.br</p>
+                        <p class="empresa-cnpj font1 fw500">000.000.000-00</p>
+                    </div>
+                    <ul class="menu-empresa">
+
+                        <li class="bxz active" id="gst-empresa">
+                            <p class="font1 fw700">Gestão</p>
+                        </li>
+                        <li class="bxz" id="resp-empresa">
+                            <p class="font1 fw700">Responsáveis</p>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="empresa-painel-interna">
+                    <nav class="abas abas-empresa">
+                    </nav>
+                    <div class="voltar"></div>
+                    <p class="titulo-painel pl font1 fw700">Cadastro Entidade Gestora</p>
+                    <div class="conteudopainel lista-grupos">
+                        <div class="gestaoinfo pl">
+                            <ul>
+                                <li>
+                                    <p class="no-comites font1 fw700">Nº de Comitês</p>
+                                    <span id="no-comites" class="font1 fw500">0</span>
+                                </li>
+                                <li>
+                                    <p class="no-conselhos font1 fw700">Nº de Conselhos</p>
+                                    <span id="no-conselhos" class="font1 fw500">0</span>
+                                </li>
+                                <li>
+                                    <p class="no-diretorias font1 fw700">Nº de Diretorias</p>
+                                    <span id="no-diretorias" class="font1 fw500">0</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="gestao-empresa pl"></div>
+                    </div>
+                    <div class="conteudopainel criar-grupo">
+                        <form action="" class="criar-grupo-form" method="post">
+                            <div class="campo bxz pl">
+                                <p class="titulo-campo font1 fw700">Tipo de Entidade Gestora:</p>
+                                <select name="tipoGestao" requerido="true" class="inputfocus font1 fw500 bxz" id="tipo-gestao" placeholder="Selecione o tipo de Entidade Gestora">
+                                </select><span class="reqStar">*</span>
+                            </div>
+                            <div class="campo bxz pl">
+                                <p class="titulo-campo font1 fw700">Local da Reunião:</p>
+                                <input name="local-reuniao" requerido="true" class="inputfocus font1 fw500 bxz" id="local-reuniao" type="text"><span class="reqStar">*</span>
+                            </div>
+                            <div class="campo bxz pl">
+                                <p class="titulo-campo font1 fw700">Periodicidade da Reunião:</p>
+                                <select name="periodicidadeRn" requerido="true" class="inputfocus font1 fw500 bxz" id="periodicidadeRn">
+                                </select><span class="reqStar">*</span>
+                            </div>
+                            <div class="campo bxz pl">
+                                <p class="titulo-campo font1 fw700">Completar 1º Passo?</p>
+                                <input type="button" name="passo1" class="font1 fw700 botao-verde" id="passo1" value="Proximo Passo">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="conteudopainel criar-grupo-2">
+                        <div class="campo2 bxz pl">
+                            <p class="titulo-campo font1 fw700">Nº de Titulares</p>
+                            <input name="quantidadeTitulares" min="1" class="inputfocus font1 fw500 bxz" type="text" placeholder="0" id="numero-titulares"><span class="reqStar">*</span>
+                        </div>
+                        <div class="campo2 bxz pl">
+                            <p class="titulo-campo font1 fw700">Nº de Suplentes</p>
+                            <input name="quantidadeSuplentes" class="inputfocus font1 fw500 bxz" type="text" placeholder="0" id="numero-suplentes">
+                        </div>
+                        <div class="campo2 bxz pl">
+                            <p class="titulo-campo font1 fw700">Nº de Reconduções</p>
+                            <input name="quantidadeReconducao" class="inputfocus font1 fw500 bxz" type="text" placeholder="0" id="numero-reconducoes">
+                        </div>
+                        <div class="campo2 bxz pl">
+                            <div class="mt25">
+                                <input name="mandatoFixo" type="checkbox" id="mandato-unificado">
+                                <label class="checkbox-label fw700 font1" for="mandato-unificado">Mandato Unificado</label>
+                            </div>
+                        </div>
+                        <div class="mdto-unificado-checked hidden">
+                            <div class="campo bxz pl">
+                                <p class="titulo-campo font1 fw700">Inicio do Mandato:</p>
+                                <input name="inicio-mandato" datemin="true" testDateMin="#fim-mandato" class="font1 fw500 bxz maskData" type="text" placeholder="Ex: 15/04/1999" id="inicio-mandato" value="">
+                            </div>
+                            <div class="campo bxz pl">
+                                <p class="titulo-campo font1 fw700">Fim do Mandato:</p>
+                                <input name="fim-mandato" class="font1 fw500 bxz maskData" type="text" placeholder="Ex: 15/04/1999" id="fim-mandato" value="">
+                            </div>
+                        </div>
+                        <div class="campo bxz pl">
+                            <p class="titulo-campo remuneracao-campo font1 fw700">Remuneração Base:</p>
+                            <input name="remuneracao-base" class="inputfocus font1 fw500 bxz" id="remuneracao-base" data-prefix="R$ " data-thousands="" data-decimal="." placeholder="Ex: R$ 15.000,00" type="text">
+                        </div>
+                        <div class="campo bxz pl">
+                            <p class="titulo-campo font1 fw700">Completar 2º Passo?</p>
+                            <input type="button" name="passo2" class="font1 fw700 botao-verde" id="passo2" value="Proximo Passo">
+                        </div>
+                    </div>
+                    <div class="conteudopainel criar-grupo-3">
+                        <form action="" class="criar-membro-form">
+                            <div class="campo bxz pl">
+                                <p class="titulo-campo font1 fw700">Cargo:</p>
+                                <input name="nome" class="inputfocus font1 fw500 bxz" id="cargo" placeholder="Cargo" type="text">
+                            </div>
+                            <div class="campo bxz pl active">
+                                <p class="titulo-campo font1 fw700">Observação:</p>
+                                <input name="nome" class="inputfocus font1 fw500 bxz" id="descricao-vaga" placeholder="Informações sobre a vaga" type="text">
+                            </div>
+                            <div class="campo bxz pl">
+                                <p class="titulo-campo font1 fw700">Orgão Indicador:</p>
+                                <select name="" id="orgao-indicador">
+                                    <option value="1">Casa Civil</option>
+                                    <option value="2">Empregados</option>
+                                    <option value="3">Empresas Interessadas</option>
+                                    <option value="4">Secretaria do Tesouro</option>
+                                    <option value="5">Ministério dos Transportes</option>
+                                    <option value="6">Ministério do Planejamento</option>
+                                    <option value="7">Sócios Minoritarios</option>
+                                    <option value="8">Empresa Estatal</option>
+                                </select>
+                            </div>
+                            <div class="campo2 bxz pl">
+                                <p class="titulo-campo font1 fw700">Inicio do Mandato:</p>
+                                <input name="comeco" class="inputfocus font1 fw500 bxz" id="inicio-membro" placeholder="Ex: 15/06" type="text">
+                            </div>
+                            <div class="campo2 bxz pl">
+                                <p class="titulo-campo font1 fw700">Termino do Mandato:</p>
+                                <input name="fim" class="inputfocus font1 fw500 bxz" id="termino-membro" placeholder="Ex: 15/06" type="text">
+                            </div>
+                            <div class="campo bxz pl">
+                                <p class="titulo-campo  font1 fw700">Remuneração Base</p>
+                                <input name="salario" class="inputfocus font1 fw500 bxz maskMoney" id="remuneracao-membro" placeholder="Remuneração Base" type="text">
+                            </div>
+                            <div class="campo bxz pl">
+                                <p class="titulo-campo font1 fw700">Completar 3º Passo?</p>
+                                <input type="button" name="passo3" class="font1 fw700 botao-verde" id="passo3" value="Proximo Passo">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="conteudopainel criar-grupo-membro">
+                        <input name="idVaga" class="hidden" id="idVaga">
+                        <form id="membroForm">
+                            <div class="campo bxz pl">
+                                <p class="titulo-campo font1 fw700">Cargo do Membro:</p>
+                                <input name="campoMembro" type="text" class="inputfocus font1 fw500 bxz" id="cargo-atribuido" disabled>
+                            </div>
+                            <div class="campo bxz pl">
+                                <p class="titulo-campo font1 fw700">Indicante do cargo:</p>
+                                <input name="campoMembro" type="text" class="inputfocus font1 fw500 bxz" id="indicante-cargo" disabled>
+                            </div>
+                            <div class="campo bxz pl">
+                                <p class="titulo-campo font1 fw700">Tipo do cargo:</p>
+                                <input name="campoMembro" type="text" class="inputfocus font1 fw500 bxz" id="tipo-cargo" disabled>
+                            </div>
+
+                            <div class="campo common bxz pl cpfMembro">
+                                <p class="titulo-campo font1 fw700">Numero do CPF:</p>
+                                <input name="criarMembroCpf" class="inputfocus font1 fw500 bxz maskCPF buscaPessoaCPF" id="criar-membro-cpf" cpf="true" requerido="true" placeholder="Ex: 000.000.000-98 " type="text">
+                            </div>
+                            <div class="campo common bxz pl">
+                                <p class="titulo-campo font1 fw700">Nome do membro:</p>
+                                <input name="criarMembroNome" class="inputfocus font1 fw500 bxz" id="criar-membro-nome" requerido="true" placeholder="Ex: João da Silva" type="text">
+                            </div>
+                            <div class="campo2 common bxz pl">
+                                <p class="titulo-campo font1 fw700">Numero do RG:</p>
+                                <input name="criarMembroRg" class="inputfocus font1 fw500 bxz" id="criar-membro-rg" requerido="true" placeholder="Ex: 0.000.000" type="text">
+                            </div>
+                            <div class="campo2 common bxz pl">
+                                <p class="titulo-campo font1 fw700">Data de emissão do RG:</p>
+                                <input name="criarMembroEmissaoRg" class="inputfocus font1 fw500 bxz maskData" id="criar-membro-emissao-rg" placeholder="Ex: 28/01/2011" type="text">
+                            </div>
+                            <div class="campo common bxz pl">
+                                <p class="titulo-campo font1 fw700">Orgão de emissão do RG:</p>
+                                <input name="criarMembroOrgaoRg" class="inputfocus font1 fw500 bxz" id="criar-membro-orgao-rg" placeholder="Ex: Policia Civil" type="text">
+                            </div>
+                            <div class="campo common bxz pl">
+                                <p class="titulo-campo font1 fw700">Nº de Telefone:</p>
+                                <input name="criarMembroTelefone" class="inputfocus font1 fw500 bxz maskTelefone" requerido="true" id="criar-membro-telefone" placeholder="Ex: XX 00000-0000" type="text">
+                            </div>
+                            <div class="campo common bxz pl">
+                                <p class="titulo-campo font1 fw700">Nº de Celular:</p>
+                                <input name="criarMembroCelular" class="inputfocus font1 fw500 bxz maskCelular" requerido="true" id="criar-membro-celular" placeholder="Ex: XX 00000-0000" type="text">
+                            </div>
+                            <div class="campo common bxz pl">
+                                <p class="titulo-campo font1 fw700">Endereço de Email Particular:</p>
+                                <input name="criarMembroEmailParticular" class="inputfocus font1 fw500 bxz" id="criar-membro-email-particular" email="true" requerido="true" placeholder="Ex: joao.silva@email.com" type="text">
+                            </div>
+                            <div class="campo common bxz pl">
+                                <p class="titulo-campo font1 fw700">Endereço de Email Institucional:</p>
+                                <input name="criarMembroEmailInstitucional" class="inputfocus font1 fw500 bxz" id="criar-membro-email-institucional" email="true" requerido="true" placeholder="Ex: joao.silva@mp.com" type="text">
+                            </div>
+
+                            <div class="campo common bxz pl">
+                                <p class="titulo-campo font1 fw700">Data Inicio:</p>
+                                <input name="campoMembro" type="text" requerido="true" class="inputfocus font1 fw500 bxz" id="data-inicio-cargo">
+                            </div>
+                            <div class="campo common bxz pl">
+                                <p class="titulo-campo font1 fw700">Data Fim:</p>
+                                <input name="campoMembro" type="text" class="inputfocus font1 fw500 bxz" id="data-fim-cargo">
+                            </div>
+
+                        </form>
+                        <div class="campo bxz pl">
+                            <p class="titulo-campo font1 fw700">Deseja cadastrar?</p>
+                            <input type="button" name="criarMembro" class="font1 fw700 botao-verde" id="criar-membro-btn" value="Cadastrar">
+                        </div>
+                        <div class="campo dar-baixa-label bxz pl">
+                            <p class="titulo-campo font1 fw700">Deseja dar Baixa?</p>
+                            <input type="button" name="darBaixa" class="font1 fw700 botao-verde" id="dar-baixa-btn" value="Dar Baixa">
+                        </div>
+                        <div class="campo reconduzir-label bxz pl">
+                            <p class="titulo-campo font1 fw700">Deseja Reconduzir Mandato?</p>
+                            <input type="button" name="reconduzirMandato" class="font1 fw700 botao-verde" id="reconduzir-mandato-btn" value="Reconduzir">
+                        </div>
+                    </div>
+                    <div class="conteudopainel info-grupo">
+                        <div class="campo bxz pl">
+                            <p class="titulo-campo font1 fw700">Nome do Responsável:</p>
+                            <span class="info-campo font1 fw500 db">Gerson Santos</span>
+                        </div>
+                        <div class="campo bxz pl">
+                            <p class="titulo-campo font1 fw700">Tipo de Responsável:</p>
+                            <span class="info-campo font1 fw500 db">Chefe de Departamento</span>
+                        </div>
+                        <div class="campo2 bxz pl">
+                            <p class="titulo-campo font1 fw700">CPF do Responsável:</p>
+                            <span class="info-campo font1 fw500 db">052.142.123-09</span>
+                        </div>
+                        <div class="campo2 bxz pl">
+                            <p class="titulo-campo font1 fw700">E-mail do Responsável:</p>
+                            <span class="info-campo font1 fw500 db"><a class="__cf_email__" href="/cdn-cgi/l/email-protection" data-cfemail="ec8b899e9f83829f8d8298839fac8e8ec28f8381c28e9e">[email&#160;protected]</a><script data-cfhash='f9e31' type="text/javascript">/* <![CDATA[ */!function(t,e,r,n,c,a,p){try{t=document.currentScript||function(){for(t=document.getElementsByTagName('script'),e=t.length;e--;)if(t[e].getAttribute('data-cfhash'))return t[e]}();if(t&&(c=t.previousSibling)){p=t.parentNode;if(a=c.getAttribute('data-cfemail')){for(e='',r='0x'+a.substr(0,2)|0,n=2;a.length-n;n+=2)e+='%'+('0'+('0x'+a.substr(n,2)^r).toString(16)).slice(-2);p.replaceChild(document.createTextNode(decodeURIComponent(e)),c)}p.removeChild(t)}}catch(u){}}()/* ]]> */</script></span>
+                        </div>
+                    </div>
+                    <div class="conteudopainel membros-info pl">
+                        <div class="gestaoinfo">
+                            <ul>
+                                <li>
+                                    <p class="titulo-campo font1 fw700">Remuneração Base:</p>
+                                    <span class="tipo-de-gestao info-campo font1 fw500 db">R$ 15.000,00</span>
+                                </li>
+                                <li>
+                                    <p class="titulo-campo font1 fw700">Vagas Titulares:</p>
+                                    <span class="info-campo vaga-titular-numero font1 fw500">0</span>
+                                </li>
+                                <li>
+                                    <p class="titulo-campo font1 fw700">Vagas Suplentes:</p>
+                                    <span class="vaga-suplente-numero info-campo font1 fw500">0</span>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <div class="gestaoinfo mt20">
+                            <ul>
+                                <li>
+                                    <p class="titulo-campo font1 fw700">Nº Reconduções:</p>
+                                    <span class="recond-numero info-campo font1 fw500">0</span>
+                                </li>
+                                <li>
+                                    <p class="titulo-campo font1 fw700">Mandato Unificado:</p>
+                                    <span class="mandato-unificado info-campo font1 fw500 db">Sim</span>
+                                </li>
+                                <li>
+                                    <p class="titulo-campo font1 fw700">Local da Reunião:</p>
+                                    <span class="local-reuniao-info info-campo font1 fw500 db">R$ 15.000,00</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="gestaoinfo mt20">
+                            <ul>
+                                <li>
+                                    <p class="titulo-campo font1 fw700">Periodicidade:</p>
+                                    <span class="periodicidade-infi info-campo font1 fw500">0</span>
+                                </li>
+                                <li>
+                                    <p class="titulo-campo font1 fw700">Início Mandato:</p>
+                                    <span class="data-inicio info-campo font1 fw500 db">R$ 15.000,00</span>
+                                </li>
+                                <li>
+                                    <p class="titulo-campo font1 fw700">Fim Mandato:</p>
+                                    <span class="data-fim info-campo font1 fw500 db">R$ 15.000,00</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div id="cargo-container">
+
+                        </div>
+
+                    </div>
+                    <div class="conteudopainel info-pessoa">
+                        <div class="campo bxz pl">
+                            <p class="titulo-campo font1 fw700">Nome:</p>
+                            <span class="info-campo font1 fw500 db">Gerson Santos</span>
+                        </div>
+                        <div class="campo bxz pl">
+                            <p class="titulo-campo font1 fw700">Cargo(s) Atual:</p>
+                            <span class="info-campo font1 fw500 db">Diretor de Divisão</span>
+                        </div>
+                        <div class="campo bxz pl">
+                            <p class="titulo-campo font1 fw700">CPF</p>
+                            <span class="info-campo font1 fw500 db">000.000.000-00</span>
+                        </div>
+                        <div class="campo bxz pl">
+                            <p class="titulo-campo font1 fw700">RG</p>
+                            <span class="info-campo font1 fw500 db">0.000.000</span>
+                        </div>
+                        <div class="campo2 bxz pl">
+                            <p class="titulo-campo font1 fw700">Orgão Emissor do RG:</p>
+                            <span class="info-campo font1 fw500 db">Policia Federal</span>
+                        </div>
+                        <div class="campo2 bxz pl">
+                            <p class="titulo-campo font1 fw700">Data de emissão do RG:</p>
+                            <span class="info-campo font1 fw500 db">04/2015</span>
+                        </div>
+                        <div class="campo2 bxz pl">
+                            <p class="titulo-campo font1 fw700">Telefone</p>
+                            <span class="info-campo font1 fw500 db">61 3552-4498</span>
+                        </div>
+                        <div class="campo2 bxz pl">
+                            <p class="titulo-campo font1 fw700">Celular:</p>
+                            <span class="info-campo font1 fw500 db">61 99278 5392</span>
+                        </div>
+                        <div class="campo2 bxz pl">
+                            <p class="titulo-campo font1 fw700">E-mail Particular:</p>
+                            <span class="info-campo font1 fw500 db"><a class="__cf_email__" href="/cdn-cgi/l/email-protection" data-cfemail="d0b7b5a2a3b9beb8bffeb5b1b590b8bfa4bdb1b9bcfeb3bfbd">[email&#160;protected]</a><script data-cfhash='f9e31' type="text/javascript">/* <![CDATA[ */!function(t,e,r,n,c,a,p){try{t=document.currentScript||function(){for(t=document.getElementsByTagName('script'),e=t.length;e--;)if(t[e].getAttribute('data-cfhash'))return t[e]}();if(t&&(c=t.previousSibling)){p=t.parentNode;if(a=c.getAttribute('data-cfemail')){for(e='',r='0x'+a.substr(0,2)|0,n=2;a.length-n;n+=2)e+='%'+('0'+('0x'+a.substr(n,2)^r).toString(16)).slice(-2);p.replaceChild(document.createTextNode(decodeURIComponent(e)),c)}p.removeChild(t)}}catch(u){}}()/* ]]> */</script></span>
+                        </div>
+                        <div class="campo2 bxz pl">
+                            <p class="titulo-campo font1 fw700">E-mail Institucional:</p>
+                            <span class="info-campo font1 fw500 db"><a class="__cf_email__" href="/cdn-cgi/l/email-protection" data-cfemail="583f3d2a2b3736762e3d2a392b183a3a763b3735763a2a">[email&#160;protected]</a><script data-cfhash='f9e31' type="text/javascript">/* <![CDATA[ */!function(t,e,r,n,c,a,p){try{t=document.currentScript||function(){for(t=document.getElementsByTagName('script'),e=t.length;e--;)if(t[e].getAttribute('data-cfhash'))return t[e]}();if(t&&(c=t.previousSibling)){p=t.parentNode;if(a=c.getAttribute('data-cfemail')){for(e='',r='0x'+a.substr(0,2)|0,n=2;a.length-n;n+=2)e+='%'+('0'+('0x'+a.substr(n,2)^r).toString(16)).slice(-2);p.replaceChild(document.createTextNode(decodeURIComponent(e)),c)}p.removeChild(t)}}catch(u){}}()/* ]]> */</script></span>
+                        </div>
+                    </div>
+                    <div class="conteudopainel criar-membros">
+                        <form action="" class="criar-membro-form">
+                            <div class="campo bxz pl active">
+                                <p class="titulo-campo font1 fw700">Nome do Membro:</p>
+                                <input name="nome" class="inputfocus font1 fw500 bxz" id="nome-membro" placeholder="Nome do Membro" type="text">
+                            </div>
+                            <div class="campo bxz pl">
+                                <p class="titulo-campo font1 fw700">Cargo:</p>
+                                <select name="" id="cargo">
+                                    <option value="1">Presidende</option>
+                                    <option value="2">Diretor Presidente</option>
+                                    <option value="3">Diretor Financeiro</option>
+                                    <option value="4">Membro</option>
+                                    <option value="5">Vice Presidente</option>
+                                </select>
+                            </div>
+                            <div class="campo bxz pl">
+                                <p class="titulo-campo font1 fw700">Orgão Indicador:</p>
+                                <select name="" id="orgao-indicador">
+                                    <option value="1">Casa Civil</option>
+                                    <option value="2">Empregados</option>
+                                    <option value="3">Empresas Interessadas</option>
+                                    <option value="4">Secretaria do Tesouro</option>
+                                    <option value="5">Ministério dos Transportes</option>
+                                    <option value="6">Ministério do Planejamento</option>
+                                    <option value="7">Sócios Minoritarios</option>
+                                    <option value="8">Empresa Estatal</option>
+                                </select>
+                            </div>
+                            <div class="campo bxz pl">
+                                <p class="titulo-campo font1 fw700">Inicio do Mandato:</p>
+                                <input name="comeco" class="inputfocus font1 fw500 bxz" id="inicio-membro" placeholder="Início do Mandato" type="text">
+                            </div>
+                            <div class="campo bxz pl">
+                                <p class="titulo-campo font1 fw700">Termino do Mandato:</p>
+                                <input name="fim" class="inputfocus font1 fw500 bxz" id="termino-membro" placeholder="Termino do Mandato" type="text">
+                            </div>
+                            <div class="campo bxz pl">
+                                <p class="titulo-campo font1 fw700">Remuneração Base:</p>
+                                <input name="salario" class="inputfocus font1 fw500 bxz" id="remuneracao-membro" placeholder="Remuneração Base" type="text">
+                            </div>
+                            <div class="campo bxz pl">
+                                <p class="titulo-campo font1 fw700">Deseja Criar/Editar Membro?</p>
+                                <input type="submit" name="salvar" class="font1 fw700 botao-verde" value="Criar">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="conteudopainel cadastro-empresa">
+
+                        <div class="campo bxz pl active">
+                            <p class="titulo-campo font1 fw700">Nome da Empresas:</p>
+                            <input name="nome" class="inputfocus font1 fw500 bxz" requerido="true" maxlength="120" id="nome-empresa-cadastro" placeholder="Ex: Petrobras" type="text"><span class="reqStar">*</span>
+                        </div>
+                        <div class="campo bxz pl active">
+                            <p class="titulo-campo font1 fw700">Sigla da Empresa:</p>
+                            <input name="nome" class="inputfocus font1 fw500 bxz" requerido="true" maxlength="10" id="sigla-empresa-cadastro" placeholder="Ex: BR" type="text"><span class="reqStar">*</span>
+                        </div>
+                        <div class="campo bxz pl active">
+                            <p class="titulo-campo font1 fw700">CNPJ da Empresa:</p>
+                            <input name="nome" class="inputfocus font1 fw500 bxz maskCNPJ" cnpj="true" requerido="true" id="cnpj-empresa-cadastro" placeholder="Ex 91.678.221/0001-79" type="text"><span class="reqStar">*</span>
+                        </div>
+                        <div class="campo bxz pl active">
+                            <p class="titulo-campo font1 fw700">URL da Empresa:</p>
+                            <input name="nome" class="inputfocus font1 fw500 bxz" id="url-empresa-cadastro" type="text">
+                        </div>
+                        <div class="campo bxz pl active">
+                            <p class="titulo-campo font1 fw700">Upload da Logo</p>
+                            <input type="file" id="logo" name="pic">
+                        </div>
+                        <div class="campo bxz pl">
+
+                            <input type="submit" name="salvar" id="criar-empresa" class="font1 fw700 botao-verde" value="Criar">
+                        </div>
+                    </div>
+                    <div class="conteudopainel editar-entidade">
+                        <input name="idEntidade" class="hidden" id="idEntidade">
+                        <input name="sts-mandato-unificado-editar" class="hidden" id="mdto-unificado-editar">
+                        <div class="campo2 bxz pl">
+                            <p class="titulo-campo font1 fw700">Vagas titulares:</p>
+                            <input name="vagas-titulares-editar" requerido="true" min="1" class="inputfocus font1 fw500 bxz" id="vagas-titulares-editar" type="text"><span class="reqStar">*</span>
+                        </div>
+                        <div class="campo2 bxz pl">
+                            <p class="titulo-campo font1 fw700">Vagas Suplentes:</p>
+                            <input name="vagas-suplentes-editar" requerido="true" min="1" class="inputfocus font1 fw500 bxz" id="vagas-suplentes-editar" type="text"><span class="reqStar">*</span>
+                        </div>
+                        <div class="campo2 bxz pl">
+                            <p class="titulo-campo font1 fw700">Nº de Reconduções:</p>
+                            <input name="numero-reconducoes-editar" class="inputfocus font1 fw500 bxz" id="numero-reconducoes-editar" type="text">
+                        </div>
+                        <div class="campo bxz pl">
+                            <p class="titulo-campo font1 fw700">Local da Reunião:</p>
+                            <input name="local-reuniao" requerido="true" class="inputfocus font1 fw500 bxz" id="local-reuniao-editar" type="text"><span class="reqStar">*</span>
+                        </div>
+                        <div class="campo bxz pl">
+                            <p class="titulo-campo font1 fw700">Periodicidade da Reunião:</p>
+                            <select name="periodicidadeRn" requerido="true" class="inputfocus font1 fw500 bxz" id="periodicidade-editar">
+                            </select><span class="reqStar">*</span>
+                        </div>
+                        <div class="mdto-unificado-checked-editar">
+                            <div class="campo bxz pl">
+                                <p class="titulo-campo font1 fw700">Inicio do Mandato:</p>
+                                <input name="inicio-mandato" datemin="true" testDateMin="#fim-mandato" class="font1 fw500 bxz maskData" type="text" placeholder="Ex: 15/04/1999" id="inicio-mandato-editar" value="">
+                            </div>
+                            <div class="campo bxz pl">
+                                <p class="titulo-campo font1 fw700">Fim do Mandato:</p>
+                                <input name="fim-mandato" class="font1 fw500 bxz maskData" type="text" placeholder="Ex: 15/04/1999" id="fim-mandato-editar" value="">
+                            </div>
+                        </div>
+                        <div class="campo bxz pl">
+                            <p class="titulo-campo remuneracao-campo font1 fw700">Remuneração Base:</p>
+                            <input name="remuneracao-base-" class="inputfocus font1 fw500 bxz money" id="remuneracao-base-editar" data-prefix="R$ " data-thousands="" data-decimal="." placeholder="Ex: R$ 15.000,00" type="text">
+                        </div>
+                        <div class="campo bxz pl">
+                            <p class="titulo-campo font1 fw700">Editar Entidade?</p>
+                            <input type="button" name="editar-entidade" class="font1 fw700 botao-verde" id="editar-entidade" value="Editar Entidade">
+                        </div>
+                    </div>
+
+                    <!-- Responsaveis Informação-->
+
+                    <div class="conteudopainel responsavel-segmentos pl">
+                        <div class="responsaveis addresponsavel">
+                            <p class="tipo-segmento font1 fw700">Criar novo responsável</p>
+                            <div class="icone-responsavel"></div>
+                            <p class="tipo-de-resposavel fw500 font1">Novo responsável</p>
+                            <footer class="footer-grupo">
+                            </footer>
+                        </div>
+                    </div>
+                    <div class="conteudopainel infor-empresa pl">
+                        <div class="info-emp add-informante">
+                            <p class="nome-info font1 fw700">Criar Responsável</p>
+                            <div class="icone-gestao-adicionar"></div>
+                            <p class="tipo-de-info fw500 font1">Adicionar Responsável</p>
+                            <footer class="footer-grupo"></footer>
+                        </div>
+                        <div class="info-emp">
+                            <p class="nome-info font1 fw700">João Henrique</p>
+                            <div class="icone-info"></div>
+                            <p class="cargo-infor fw500 font1">Direto de Divisãor</p>
+                            <p class="tipo-de-info fw500 font1">Titular</p>
+                            <footer class="footer-grupo">
+                                <div class="icone-holder">
+                                    <div class="grupo-btn editar-grupo" title="Editar Grupo"></div>
+                                    <div class="grupo-btn excluir-grupo" title="Excluir Grupo"></div>
+                                    <div class="grupo-btn informacoes-grupo" title="Informações grupo"></div>
+                                </div>
+                            </footer>
+                        </div>
+                    </div>
+                    
+                    <div class="conteudopainel infor-seg painel-active">
+                      <div class="info-pessoa-seg">
+                        <div class="campo bxz active pl">
+                            <p class="titulo-campo font1 fw700">CPF da Pessoa:</p>
+                            <input name="nomeResponsavel" class="inputfocus font1 fw500 bxz" id="nome-responsavel" placeholder="Ex: 051.141.121-92" type="text">
+                        </div>
+                        <div class="campo2 bxz pl">
+                            <p class="titulo-campo font1 fw700">Nome</p>
+                            <span class="info-campo font1 fw500 db">José Rafael Arantes de Amorim</span>
+                        </div>
+                        <div class="campo2 bxz pl">
+                            <p class="titulo-campo font1 fw700">Email</p>
+                            <span class="info-campo font1 fw500 db">rafaell.u.a@hotmail.com</span>
+                        </div>
+                      </div>
+                      <div class="seg-pessoa-table typeoficons">
+                        <table class="seg-pessoa-tb">
+                          <tr>
+                            <th class="font1 fw700"></th>
+                            <th class="font1 fw700">Atualizador</th>
+                            <th class="font1 fw700">Validador</th>
+                          </tr>
+                          <tr>
+                            <td class="font1 fw500 ">Conselho Administrativo </td>
+                            <td><input type="checkbox" class="input-center" name="" value=""></td>
+                            <td><input type="checkbox" class="input-center" name="" value=""></td>
+                          </tr>
+                          <tr>
+                            <td class="font1 fw500 ">Dirigentes</td>
+                            <td><input type="checkbox" class="input-center" name="" value=""></td>
+                            <td><input type="checkbox" class="input-center" name="" value=""></td>
+                          </tr>
+                          <tr>
+                            <td class="font1 fw500 ">Conselho Fiscal</td>
+                            <td><input type="checkbox" class="input-center" name="" value=""></td>
+                            <td><input type="checkbox" class="input-center" name="" value=""></td>
+                          </tr>
+                          <tr>
+                            <td class="font1 fw500 ">Remuneração Dirigentes </td>
+                            <td><input type="checkbox" class="input-center" name="" value=""></td>
+                            <td><input type="checkbox" class="input-center" name="" value=""></td>
+                          </tr>
+                          <tr>
+                            <td class="font1 fw500 ">Perfil Estatal</td>
+                            <td><input type="checkbox" class="input-center" name="" value=""></td>
+                            <td><input type="checkbox" class="input-center" name="" value=""></td>
+                          </tr>
+                          <tr>
+                            <td class="font1 fw500 ">Conselho Administrativo </td>
+                            <td><input type="checkbox" class="input-center" name="" value=""></td>
+                            <td><input type="checkbox" class="input-center" name="" value=""></td>
+                          </tr>
+                          <tr>
+                            <td class="font1 fw500 ">Dirigentes</td>
+                            <td><input type="checkbox" class="input-center" name="" value=""></td>
+                            <td><input type="checkbox" class="input-center" name="" value=""></td>
+                          </tr>
+                          <tr>
+                            <td class="font1 fw500 ">Conselho Fiscal</td>
+                            <td><input type="checkbox" class="input-center" name="" value=""></td>
+                            <td><input type="checkbox" class="input-center" name="" value=""></td>
+                          </tr>
+                          <tr>
+                            <td class="font1 fw500 ">Remuneração Dirigentes </td>
+                            <td><input type="checkbox" class="input-center" name="" value=""></td>
+                            <td><input type="checkbox" class="input-center" name="" value=""></td>
+                          </tr>
+                          <tr>
+                            <td class="font1 fw500 ">Perfil Estatal</td>
+                            <td><input type="checkbox" class="input-center" name="" value=""></td>
+                            <td><input type="checkbox" class="input-center" name="" value=""></td>
+                          </tr>
+                          <tr>
+                            <td class="font1 fw500 ">Conselho Administrativo </td>
+                            <td><input type="checkbox" class="input-center" name="" value=""></td>
+                            <td><input type="checkbox" class="input-center" name="" value=""></td>
+                          </tr>
+                          <tr>
+                            <td class="font1 fw500 ">Dirigentes</td>
+                            <td><input type="checkbox" class="input-center" name="" value=""></td>
+                            <td><input type="checkbox" class="input-center" name="" value=""></td>
+                          </tr>
+                          <tr>
+                            <td class="font1 fw500 ">Conselho Fiscal</td>
+                            <td><input type="checkbox" class="input-center" name="" value=""></td>
+                            <td><input type="checkbox" class="input-center" name="" value=""></td>
+                          </tr>
+                          <tr>
+                            <td class="font1 fw500 ">Remuneração Dirigentes </td>
+                            <td><input type="checkbox" class="input-center" name="" value=""></td>
+                            <td><input type="checkbox" class="input-center" name="" value=""></td>
+                          </tr>
+                          <tr>
+                            <td class="font1 fw500 ">Perfil Estatal</td>
+                            <td><input type="checkbox" class="input-center" name="" value=""></td>
+                            <td><input type="checkbox" class="input-center" name="" value=""></td>
+                          </tr>
+                        </table>
+                      </div>
+                      <div class="seg-pessoa-icons typeoficons hidden pl">
+                        <div class="seg-edit">
+                          <div class="dropdown-seg-edit">
+                            <ul>
+                              <li class="font1 fw500 select-seg-pess">Selecionar Segmentos</li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div class="info-emp">
+                            <p class="nome-info font1 fw700">João Henrique</p>
+                            <div class="icone-info"></div>
+                            <p class="cargo-infor fw500 font1">Direto de Divisãor</p>
+                            <p class="tipo-de-info fw500 font1">Titular</p>
+                            <footer class="footer-grupo">
+                                <div class="icone-holder">
+                                    <div class="grupo-btn editar-grupo" title="Editar Grupo"></div>
+                                    <div class="grupo-btn excluir-grupo" title="Excluir Grupo"></div>
+                                    <div class="grupo-btn informacoes-grupo" title="Informações grupo"></div>
+                                </div>
+                            </footer>
+                        </div>
+                        <div class="info-emp">
+                            <p class="nome-info font1 fw700">João Henrique</p>
+                            <div class="icone-info"></div>
+                            <p class="cargo-infor fw500 font1">Direto de Divisãor</p>
+                            <p class="tipo-de-info fw500 font1">Titular</p>
+                            <footer class="footer-grupo">
+                                <div class="icone-holder">
+                                    <div class="grupo-btn editar-grupo" title="Editar Grupo"></div>
+                                    <div class="grupo-btn excluir-grupo" title="Excluir Grupo"></div>
+                                    <div class="grupo-btn informacoes-grupo" title="Informações grupo"></div>
+                                </div>
+                            </footer>
+                        </div>
+                        <div class="info-emp">
+                            <p class="nome-info font1 fw700">João Henrique</p>
+                            <div class="icone-info"></div>
+                            <p class="cargo-infor fw500 font1">Direto de Divisãor</p>
+                            <p class="tipo-de-info fw500 font1">Titular</p>
+                            <footer class="footer-grupo">
+                                <div class="icone-holder">
+                                    <div class="grupo-btn editar-grupo" title="Editar Grupo"></div>
+                                    <div class="grupo-btn excluir-grupo" title="Excluir Grupo"></div>
+                                    <div class="grupo-btn informacoes-grupo" title="Informações grupo"></div>
+                                </div>
+                            </footer>
+                        </div>
+                        <div class="spacer" style="clear: both;"></div>
+                      </div>
+                      <footer class="seg-opt pl20">
+                        <div class="half">
+                          <button class="segmento-por-pessoa button-opt font1 fw700 btn-active">Pes</button>
+                          <button class="pessoa-por-segmento button-opt font1 fw700">Seg</button>
+                        </div>
+                        <div class="half">
+                            <div class="right"> 
+                                <button class="button-opt font1 fw700 lista-icones">Ico</button>
+                            	<button class="button-opt font1 fw700 lista-tabela">Tab</button>
+                            </div>
+                        </div>
+                      </footer>
+                    </div>
+                    
+                    <div class="conteudopainel cargo-info ">
+                        <div class="campo bxz pl">
+                            <p class="titulo-campo font1 fw700">CPF:</p>
+                            <span class="info-campo font1 fw500 db">051.141.121-30</span>
+                        </div>
+                        <div class="campo bxz pl">
+                            <p class="titulo-campo font1 fw700">Nome do Responsável:</p>
+                            <span class="info-campo font1 fw500 db">João da Silva</span>
+                        </div>
+                        <div class="campo bxz pl">
+                            <p class="titulo-campo font1 fw700">Responsabilidade:</p>
+                            <span class="info-campo font1 fw500 db">Atualizador</span>
+                        </div>
+                        <div class="campo bxz pl">
+                            <p class="titulo-campo font1 fw700">Email Institucional:</p>
+                            <span class="info-campo font1 fw500 db"><a class="__cf_email__" href="/cdn-cgi/l/email-protection" data-cfemail="761c19171958051f1a00173614145815191b581404">[email&#160;protected]</a><script data-cfhash='f9e31' type="text/javascript">/* <![CDATA[ */!function(t,e,r,n,c,a,p){try{t=document.currentScript||function(){for(t=document.getElementsByTagName('script'),e=t.length;e--;)if(t[e].getAttribute('data-cfhash'))return t[e]}();if(t&&(c=t.previousSibling)){p=t.parentNode;if(a=c.getAttribute('data-cfemail')){for(e='',r='0x'+a.substr(0,2)|0,n=2;a.length-n;n+=2)e+='%'+('0'+('0x'+a.substr(n,2)^r).toString(16)).slice(-2);p.replaceChild(document.createTextNode(decodeURIComponent(e)),c)}p.removeChild(t)}}catch(u){}}()/* ]]> */</script></span>
+                        </div>
+                        <div class="campo2 bxz pl">
+                            <p class="titulo-campo font1 fw700">Telefone do Responsável:</p>
+                            <span class="info-campo font1 fw500 db">(61) 3556 4123</span>
+                        </div>
+                        <div class="campo2 bxz pl">
+                            <p class="titulo-campo font1 fw700">Celular do Responsável:</p>
+                            <span class="info-campo font1 fw500 db">(61) 3556 4123</span>
+                        </div>
+                    </div>
+                    <div class="conteudopainel cadastro-segmento">
+
+
+                        <div class="responsavel-segmentos pl">
+                            <div class="responsaveis addresponsavel">
+                                <p class="tipo-segmento font1 fw700">Criar novo responsável</p>
+                                <div class="icone-responsavel"></div>
+                                <p class="tipo-de-resposavel fw500 font1">Novo responsável</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="conteudopainel lista-segmentos">
+                        <div class="segmentos-empresa pl">
+                        </div>
+                    </div>
+                    <div class="conteudopainel lista-responsaveis-por-segmento">
+                        <input class="hidden" id="id-seg-atual" name="id-seg-atual">
+                        <div class="reponsaveis-empresa-seg pl">
+                        </div>
+                    </div>
+                    <div class="conteudopainel criar-responsavel">
+
+                        <div class="campo bxz pl segmento-informacao-sel hidden">
+                            <p class="titulo-campo font1 fw700">Selecione um segmento de informação:</p>
+                            <select class="inputfocus font1 fw500 bxz" id="segmento-categoria" type="text">
+                            </select>
+                             <span class="reqStar">*</span>
+                        </div>
+                        <div class="campo bxz pl active cpfResponsavel">
+                            <p class="titulo-campo font1 fw700">CPF do Responsável:</p>
+                            <input type="text" class="hidden" id="idResponsavel" value="0">
+                            <input name="nome" cpf="true" requerido="true" class="inputfocus font1 fw500 bxz buscaPessoaCPFResponsavel maskCPF " id="cpf-responsavel" placeholder="Ex: 000.000.000-00" type="text">
+                            <span class="reqStar">*</span>
+                        </div>
+
+                        <div class="campo bxz pl active">
+                            <p class="titulo-campo font1 fw700">Atribuição:</p>
+                            <select name="" requerido="true" id="atribuicao-resp">
+                            </select>
+                            <span class="reqStar">*</span>
+                        </div>
+
+                        <div class="campo bxz pl active">
+                            <p class="titulo-campo font1 fw700">Nome do Responsável:</p>
+                            <input name="nomeResponsavel" requerido="true" class="inputfocus font1 fw500 bxz" id="nome-responsavel" placeholder="Ex: João da Silva Veras" type="text">
+                            <span class="reqStar">*</span>
+                        </div>
+
+                        <div class="campo bxz pl active">
+                            <p class="titulo-campo font1 fw700">E-mail Profissional do Responsável:</p>
+                            <input name="emailResponsavel" email="true" requerido="true" class="inputfocus font1 fw500 bxz" id="email-responsavel" placeholder="Ex: responsavel@bb.com.br" type="text">
+                            <span class="reqStar">*</span>
+                        </div>
+
+                        <div class="campo bxz pl active">
+                            <p class="titulo-campo font1 fw700">Telefone do Responsável:</p>
+                            <input name="telefoneResponsavel" requerido="true" class="inputfocus font1 fw500 bxz maskTelefone" id="telefone-responsavel" placeholder="Ex: 99 9999-99999" type="text">
+                            <span class="reqStar">*</span>
+                        </div>
+                        <div class="campo bxz pl active">
+                            <p class="titulo-campo font1 fw700">Celular do Responsável:</p>
+                            <input name="celularResponsavel" requerido="true" class="inputfocus font1 fw500 bxz maskCelular" id="celular-responsavel" placeholder="Ex: 99 9999-99999" type="text">
+                            <span class="reqStar">*</span>
+                        </div>
+
+                        <!--<div class="campo bxz pl">
+                            <p class="titulo-campo font1 fw700">Adicionar outro Responsável</p>
+                            <input type="button" name="passo4" class="font1 fw700 botao-verde" id="addOutroResp" value="Adicionar">
+                        </div> -->
+                        <div class="campo bxz pl">
+                            <p class="titulo-campo font1 fw700">Finalizar Cadastro?</p>
+                            <input type="button" name="cadastrar-gestao" class="font1 fw700 botao-verde" id="cadastrar-responsavel" value="Cadastrar">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <div class="overlay hidden modal-exclusao">
+        <div class="modal">
+            <div class="botao-fechar-modal"></div>
+            <p class="font1 modal-title center fw700">Deseja mesmo desativar?
+                <p class="font1 modal-subtitle center fw500 valor-exclusao">Arquivo.html</p>
+            </p>
+            <input type="button" class="mt20 btn-confirmar modal-button botao-verde2 center btn-confirmar-exclusao fw700 font1" name="" value="Confirmar">
+        </div>
+    </div>
+
+    <div class="overlay adicionar-vaga hidden">
+        <div class="modal">
+            <div class="botao-fechar-modal"></div>
+            <table id="table-cargos" style="width:100%">
+                <tr class="cabecalho-modal">
+                    <th class="fw900 font1">Nº da Vaga</th>
+                    <th class="fw900 font1">Tipo da Vaga</th>
+                    <th class="fw900 font1">Cargo</th>
+                    <th class="fw900 font1">Indicante</th>
+                    <th class="fw900 font1">Observação</th>
+                    <th class="fw900 font1">Remuneração</th>
+                    <th class="fw900 font1">Inicio Mdto.</th>
+                    <th class="fw900 font1">Fim Mdto.</th>
+                    <th class="fw900 font1">Excluir</th>
+                </tr>
+
+            </table>
+            <p class="titulo-campo font1 fw700 center">Deseja criar as vagas do <span class="tipo-gestao-modal fw700 font1"></span>?</p>
+            <input type="submit" name="salvar" id="criar-cargo" class="font1 fw700 botao-verde2 center" value="Criar cargos">
+        </div>
+    </div>
+    <div class="overlay remuneracao-vaga hidden">
+        <div class="modal">
+            <div class="botao-fechar-modal"></div>
+            <table style="width:100%">
+                <tr class="cabecalho-modal">
+                    <th class="fw900 font1">Nº da Vaga</th>
+                    <th class="fw900 font1">Tipo Vaga</th>
+                    <th class="fw900 font1">Membro</th>
+                    <th class="fw900 font1">Cargo</th>
+                    <th class="fw900 font1">Última Remuneração</th>
+                    <th class="fw900 font1">Remuneração</th>
+                    <th class="fw900 font1">
+                        <input type="checkbox" name="" id="repetir-remuneração" value="">
+                    </th>
+                </tr>
+                <tr>
+                    <td colspan="3" class=" tal font1 fw700">Remuneração Padrão: <span class="remuneracao-padrao font1 fw700">R$ 13.000,00</span> </td>
+                    <td></td>
+                    <td></td>
+                    <td class="font1 fw700 tal">Data de Remuneração
+                        <input type="text" requerido="true" class="inputtb2 data-remuneracao fw500 font1">
+                    </td>
+                    <td></td>
+                </tr>
+            </table>
+            <p class="titulo-campo font1 fw700 center">Deseja Atribuir Remuneração aos Membros do<span class="tipo-gestao-modal fw700 font1"></span>?</p>
+            <input type="submit" name="salvar" class="font1 fw700 botao-verde2 center" value="Atribuir Remuneração">
+        </div>
+    </div>
+    <div class="overlay dar-baixa hidden">
+        <div class="modal">
+            <div class="botao-fechar-modal"></div>
+            <p class="font1 modal-title center fw700">Deseja mesmo dar baixa?</p>
+            <p class="font1 modal-subtitle center fw500">Para dar baixa no membro <span class="nome-membro-baixa"></span>(<span class="cargo-membro-baixa"></span>) preencha a data da baixa abaixo.</p>
+            <input type="text" class="data-dar-baixa" name="darBaixaData" value="" placeholder="Ex: 07/12/2018">
+            <input type="submit" name="darBaixa" id="dar-baixa" class="font1 fw700 botao-verde2 center" value="Dar Baixa">
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<div class="gerenciar-painel painel bxz">
+        <nav class="gerenciar-nav">
+            <ul class="menu-gerenciar">
+                <li class="bxz" id="opcoes-menu">
+                    <p class="font1 fw700 titulo-lateral"></p>
+                </li>
+                <li class="bxz active" id="pessoas-menu">
+                    <p class="font1 fw700">Manter Pessoas</p>
+                </li>
+            </ul>
+        </nav>
+        <div class="gerenciar-painel-interna">
+            <nav class="abas-gerenciar">
+                <div class="aba abactive2">
+                    <p class="fw700 font1">Gerenciar<span class="fw500 font1 fsit" id="titulo-gerenciar"> -  Manter Pessoas</span>
+                    </p>
+                </div>
+            </nav>
+            <div class="voltar"></div>
+            <p class="titulo-painel-gerenciar pl font1 fw700">Manter Pessoas</p>
+            <div class="conteudopainel pl listar-pessoas painel-active">
+                <div class="pessoas-card" *ngFor="let pessoa of pessoas; let i = index">
+                    <div class="selecionar-pessoa" id-pessoa="1">
+                        <p class="nome-pessoa font1 fw700">{{pessoa.nmePessoa}}</p> 
+                        <div class="icone-info"></div>
+                        <p class="pessoa-cpf fw500 font1">{{pessoa.numCpf}}</p>
+                        <p class="pessoa-email fw500 font1"><a class="">{{pessoa.emlParticular}}</a></p>
+                        <p class="pessoa-telefone fw500 font1">{{pessoa.numTelefone}}</p> 
+                    </div>
+                    <footer class="footer-grupo">
+                        <div class="icone-holder">
+                            <div class="grupo-btn editar-grupo" (click)="editarPessoa(i)" title="Editar Pessoa"></div>
+                            <div class="grupo-btn excluir-grupo" routerLink="./excluir/{{pessoa.id}}" (click)="deletarPessoa(i)" title="Excluir Pessoa"></div>
+                        </div> 
+                    </footer>
+                </div> 
+                <div class="pessoas-card add-pessoa">
+                    <p class="nome-pessoa font1 fw700">Criar Pessoa</p>
+                    <div class="icone-gestao-adicionar" (click)="cadastrar()"></div>
+                    <p class="tipo-de-info fw500 font1">Adicionar nova Pessoa</p>
+                    <footer class="footer-grupo"></footer>
+                </div>
+        </div>
+    </div> 
+
+    
+<router-outlet>
+    </router-outlet>
